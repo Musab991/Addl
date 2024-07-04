@@ -35,6 +35,9 @@ namespace AADLBusiness
         public override clsSubscriptionType SubscriptionTypeInfo { get; }
         public override clsSubscriptionWay SubscriptionWayInfo { get; }
 
+        // Snapshot of the initial state
+        private clsRegulator initialState;
+
         public clsRegulator()
         {
             this.RegulatorID = -1;
@@ -77,6 +80,10 @@ namespace AADLBusiness
             LastEditByUserInfo=clsUser.FindByUserID(LastEditByUserID);
             Mode = enMode.Update;
 
+            //or make object carrying properties only
+            // Create a snapshot of the initial state
+            initialState = (clsRegulator)this.MemberwiseClone();
+
         }
         protected override bool _AddNew()
         {
@@ -96,6 +103,7 @@ namespace AADLBusiness
         protected override bool _Update()
         {
             //call DataAccess Layer 
+
 
             return clsRegulatorData.UpdateRegulator(this.RegulatorID,this.PractitionerID,
                  this.MembershipNumber, (int)this.LastEditByUserID, this.SubscriptionTypeID, this.SubscriptionWayID,
@@ -234,12 +242,12 @@ namespace AADLBusiness
             return false;
 
         }
-
-        public static bool Deactivate(int RegulatorID)
-                      => clsRegulatorData.Deactivate(RegulatorID);
-
+       
+  
+        public static bool Deactivate(int RegulatorID,int LastEditByUserID)
+                      => clsRegulatorData.Deactivate(RegulatorID,LastEditByUserID);
         public static bool Activate(int RegulatorID)
-            => clsRegulatorData.Activate(RegulatorID);
+            => clsRegulatorData.Activate(RegulatorID) ;
 
         public static bool DeletePermanently(int RegulatorID)
             => clsRegulatorData.DeletePermanently(RegulatorID);

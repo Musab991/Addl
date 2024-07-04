@@ -48,9 +48,8 @@ namespace AADLDataAccess
                                 if (reader.Read())
                                 {
                                     // The record was found
-                                    isFound = true;
+                                    PersonID = (int)reader["PersonID"];
                                     IsLawyer = (bool)reader["IsLawyer"];
-                                    PractitionerID = (int)reader["PractitionerID"];
                                     SubscriptionTypeID = (int)reader["SubscriptionTypeID"];
                                     SubscriptionWayID = (int)reader["SubscriptionWayID"];
                                 }
@@ -62,12 +61,12 @@ namespace AADLDataAccess
                                     // The record was found
                                     isFound = true;
                                     RegulatorID = (int)reader["RegulatorID"];
+                                    PractitionerID = (int)reader["PractitionerID"];
                                     MembershipNumber = (string)reader["MembershipNumber"];
                                     IssueDate = (DateTime)reader["IssueDate"];
                                     LastEditByUserID = reader["LastEditByUserID"] != DBNull.Value ? LastEditByUserID=(int)reader["LastEditByUserID"] : null;
                                     CreatedByUserID = (int)reader["CreatedByUserID"];
                                     IsActive = (bool)reader["IsActive"];
-                                    PersonID = (int)reader["PersonID"];
                                 }
 
                                 // Read second result set
@@ -79,6 +78,8 @@ namespace AADLDataAccess
                                     string regulatoryCaseTypeName = reader.GetString(reader.GetOrdinal("RegulatoryCaseTypeName"));
 
                                     CasesRegulatorPracticesIDNameDictionary.Add(regulatoryCaseTypeId, regulatoryCaseTypeName);
+                                    isFound = true;
+
                                 }
                             }
                             else
@@ -586,7 +587,8 @@ namespace AADLDataAccess
 
         public static bool Deactivate(int RegulatorID)
             => clsDataAccessHelper.Deactivate("SP_DeactivateRegulator", "RegulatorID", RegulatorID);
-
+        public static bool Deactivate(int RegulatorID,int LastEditByUserID)
+          => clsDataAccessHelper.Deactivate("SP_DeactivateRegulator", "RegulatorID", RegulatorID,"LastEditByUserID", LastEditByUserID);
         public static bool Activate(int RegulatorID)
             => clsDataAccessHelper.Activate("SP_ActivateRegulator", "RegulatorID", RegulatorID);
         public static bool ExistsByRegulatorID(int? shariaID)

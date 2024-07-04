@@ -178,12 +178,13 @@ namespace AADL.Regulators
 
         private void _ShowRequlatorCardForm()
         {
-            int RegulatorID = (int)dgvRegulators.CurrentRow.Cells["RegulatorID"].Value;
+                int RegulatorID = (int)dgvRegulators.CurrentRow.Cells["RegulatorID"].Value;
 
-            frmRegulatorInfo frm = new frmRegulatorInfo(RegulatorID);
-            _mode = enMode.update;
-            _Subscribe(frm);
-            frm.ShowDialog();
+                frmRegulatorInfo frm = new frmRegulatorInfo(RegulatorID);
+                _mode = enMode.update;
+                _Subscribe(frm);
+                frm.ShowDialog();
+            
         }
 
         private void frmRegulatorList_Load(object sender, EventArgs e)
@@ -391,7 +392,9 @@ namespace AADL.Regulators
 
         private void showInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             _ShowRequlatorCardForm();
+            
         }
 
         private void activateRegulatorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -420,10 +423,10 @@ namespace AADL.Regulators
         private void deactivateRegulatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
                 int RegulatorID = (int)dgvRegulators.CurrentRow.Cells["RegulatorID"].Value;
-
+            
                 if (MessageBox.Show($"هل انت متاكد انك تريد تريد الغاء تفعيل الحساب رقم {RegulatorID} ؟", "تاكيد الإلغاء", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    if (clsRegulator.Deactivate(RegulatorID))
+                    if (clsRegulator.Deactivate(RegulatorID,(int)clsGlobal.CurrentUser.UserID))
                     {
                         MessageBox.Show($"تم الإلغاء تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

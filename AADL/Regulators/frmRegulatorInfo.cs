@@ -19,13 +19,12 @@ namespace AADL.Regulators
             _RegulatorID = RegulatorID;
             InitializeComponent();
         }
-   
+
 
         private void frmRegulatorInfo_Load(object sender, EventArgs e)
         {
             try
             {
-
                 if (_RegulatorID != -1)
                 {
                     _Subscribe(ctrlRegulatorCard1);
@@ -37,10 +36,10 @@ namespace AADL.Regulators
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (
-            Exception ex)
+            catch (Exception ex)
             {
                 clsHelperClasses.WriteEventToLogFile("Regulator info form ,\n" + ex.Message, System.Diagnostics.EventLogEntryType.Error);
+                Console.Error.WriteLine(ex.Message);
             }
         }
 

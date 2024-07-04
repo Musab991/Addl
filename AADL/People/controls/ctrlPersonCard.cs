@@ -13,6 +13,7 @@ using System.IO;
 using AADLBusiness;
 using MethodTimer;
 using AADL.GlobalClasses;
+using System.Globalization;
 namespace AADL.People
 {
     public partial class ctrlPersonCard : UserControl
@@ -227,14 +228,24 @@ namespace AADL.People
             try
             {
 
-            llEditPersonInfo.Enabled = true;
+                // Create a HijriCultureInfo
+                llEditPersonInfo.Enabled = true;
             _PersonID = _Person.PersonID;
             lblPersonID.Text = _Person.PersonID.ToString();
             lblNationalNo.Text = _Person.NationalNo!=""?_Person.NationalNo: "[????]";
             lbPassportNo.Text = _Person.PassportNo != "" ? _Person.PassportNo : "[????]";
             lblFullName.Text = _Person.FullName;
             lbGender.Text = _Person.Gender.HasValue ? (_Person.Gender ==0? "ذكر" : "أنثى"): "[????]";
-            lbDateOfBirth.Text = _Person.DateOfBirth.HasValue ? _Person.DateOfBirth.Value.ToShortDateString() : "[????]";
+                if (_Person.DateOfBirth.HasValue == true)
+                {
+                    lbDateOfBirth.Text= _Person.DateOfBirth.Value.ToShortDateString();
+
+                }
+                else
+                {
+
+                    lbDateOfBirth.Text =  "[????]";
+                }
             lbAddress.Text = _Person.Address != "" ? _Person.Address : "[????]";
             lbPhone.Text = _Person.Phone;
             lbWhatsApp.Text=_Person.WhatsApp != "" ? _Person.WhatsApp : "[????]";

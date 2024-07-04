@@ -963,7 +963,6 @@ namespace AADL.Regulators
 
                 if (_RegulatorMode == enMode.AddNew)
                 {
-
                     _Regulator.IssueDate = DateTime.Now;
                     _Regulator.CreatedByUserID = (int)clsGlobal.CurrentUser.UserID;
 
@@ -972,7 +971,7 @@ namespace AADL.Regulators
                 {
                     _Regulator.LastEditByUserID = clsGlobal.CurrentUser.UserID;
                 }
-
+               
                 _Regulator.PersonID = (int)ctrlPersonCardWithFilter1.PersonID;
                 _Regulator.MembershipNumber = ctbRegulatoryMembershipNumber.Text.Trim();
                 _Regulator.IsActive = chkRegulatorIsActive.Checked;
@@ -1056,7 +1055,6 @@ namespace AADL.Regulators
                 _Expert.SubscriptionTypeID = _GetSelectedSubscriptionTypeID();
                 _Expert.SubscriptionWayID = _GetSelectedSubscriptionWayID();
                 _Expert.ExpertCasesPracticeIDNameDictionary = GetCasesPracticesForPractitioner(clsPractitioner.enPractitionerType.Expert);
-
 
             }
 
@@ -1232,12 +1230,13 @@ namespace AADL.Regulators
                     _SaveSharia();
                     _SaveJudger();
                     _SaveExpert();
+
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Exception :" + ex.Message, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Exception : " + ex.Message, "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
