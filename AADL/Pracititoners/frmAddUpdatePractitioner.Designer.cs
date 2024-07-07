@@ -125,9 +125,14 @@
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.gbAdditionType = new System.Windows.Forms.GroupBox();
+            this.cbAddSharia = new System.Windows.Forms.CheckBox();
+            this.cbAddExpert = new System.Windows.Forms.CheckBox();
+            this.cbAddJudger = new System.Windows.Forms.CheckBox();
+            this.cbAddRegulator = new System.Windows.Forms.CheckBox();
             this.tpRegulatorInfo.SuspendLayout();
             this.gpRegulatorySubscriptionType.SuspendLayout();
             this.gpSubscriptionWay.SuspendLayout();
@@ -153,6 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.gbAdditionType.SuspendLayout();
             this.SuspendLayout();
             // 
             // tpRegulatorInfo
@@ -176,7 +182,7 @@
             this.tpRegulatorInfo.Controls.Add(this.ctbRegulatoryMembershipNumber);
             this.tpRegulatorInfo.Location = new System.Drawing.Point(4, 22);
             this.tpRegulatorInfo.Name = "tpRegulatorInfo";
-            this.tpRegulatorInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpRegulatorInfo.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tpRegulatorInfo.Size = new System.Drawing.Size(1236, 744);
             this.tpRegulatorInfo.TabIndex = 1;
             this.tpRegulatorInfo.Text = "النظامي";
@@ -470,7 +476,7 @@
             this.tpPersonalInfo.Controls.Add(this.btnPersonInfoNext);
             this.tpPersonalInfo.Location = new System.Drawing.Point(4, 22);
             this.tpPersonalInfo.Name = "tpPersonalInfo";
-            this.tpPersonalInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpPersonalInfo.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tpPersonalInfo.Size = new System.Drawing.Size(1236, 744);
             this.tpPersonalInfo.TabIndex = 0;
             this.tpPersonalInfo.Text = "البيانات الشخصية";
@@ -479,12 +485,12 @@
             // 
             this.ctrlPersonCardWithFilter1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ctrlPersonCardWithFilter1.FilterEnabled = true;
-            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(134, 21);
-            this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(163, 21);
+            this.ctrlPersonCardWithFilter1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
             this.ctrlPersonCardWithFilter1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrlPersonCardWithFilter1.ShowAddPerson = true;
-            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1096, 686);
+            this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(1067, 725);
             this.ctrlPersonCardWithFilter1.TabIndex = 120;
             // 
             // btnPersonInfoNext
@@ -507,7 +513,7 @@
             this.tcPractitionernfo.Controls.Add(this.tpShariaInfo);
             this.tcPractitionernfo.Controls.Add(this.tpJudgerInfo);
             this.tcPractitionernfo.Controls.Add(this.tpExpertInfo);
-            this.tcPractitionernfo.Location = new System.Drawing.Point(76, 51);
+            this.tcPractitionernfo.Location = new System.Drawing.Point(74, 162);
             this.tcPractitionernfo.Name = "tcPractitionernfo";
             this.tcPractitionernfo.RightToLeftLayout = true;
             this.tcPractitionernfo.SelectedIndex = 0;
@@ -537,7 +543,7 @@
             this.tpShariaInfo.Controls.Add(this.pictureBox5);
             this.tpShariaInfo.Location = new System.Drawing.Point(4, 22);
             this.tpShariaInfo.Name = "tpShariaInfo";
-            this.tpShariaInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpShariaInfo.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tpShariaInfo.Size = new System.Drawing.Size(1236, 744);
             this.tpShariaInfo.TabIndex = 2;
             this.tpShariaInfo.Text = "شرعي";
@@ -834,7 +840,7 @@
             this.tpJudgerInfo.Controls.Add(this.pictureBox7);
             this.tpJudgerInfo.Location = new System.Drawing.Point(4, 22);
             this.tpJudgerInfo.Name = "tpJudgerInfo";
-            this.tpJudgerInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpJudgerInfo.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tpJudgerInfo.Size = new System.Drawing.Size(1236, 744);
             this.tpJudgerInfo.TabIndex = 3;
             this.tpJudgerInfo.Text = "محكم";
@@ -1097,7 +1103,7 @@
             this.tpExpertInfo.Controls.Add(this.pictureBox10);
             this.tpExpertInfo.Location = new System.Drawing.Point(4, 22);
             this.tpExpertInfo.Name = "tpExpertInfo";
-            this.tpExpertInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tpExpertInfo.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tpExpertInfo.Size = new System.Drawing.Size(1236, 744);
             this.tpExpertInfo.TabIndex = 4;
             this.tpExpertInfo.Text = "خبير";
@@ -1353,9 +1359,20 @@
             this.lblTitle.Text = "تعديل الطلب";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // errorProvider1
+            // btnClose
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::AADL.Properties.Resources.Close_32;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.Location = new System.Drawing.Point(551, 967);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(135, 34);
+            this.btnClose.TabIndex = 120;
+            this.btnClose.Text = "اغلاق";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -1363,37 +1380,90 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSave.Image = global::AADL.Properties.Resources.Save_32;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.Location = new System.Drawing.Point(-1, 251);
+            this.btnSave.Location = new System.Drawing.Point(716, 967);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 34);
-            this.btnSave.TabIndex = 191;
+            this.btnSave.Size = new System.Drawing.Size(135, 34);
+            this.btnSave.TabIndex = 121;
             this.btnSave.Text = "حفظ";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnClose
+            // errorProvider1
             // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Image = global::AADL.Properties.Resources.Close_32;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnClose.Location = new System.Drawing.Point(-1, 306);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 34);
-            this.btnClose.TabIndex = 190;
-            this.btnClose.Text = "اغلاق";
-            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // gbAdditionType
+            // 
+            this.gbAdditionType.Controls.Add(this.cbAddSharia);
+            this.gbAdditionType.Controls.Add(this.cbAddExpert);
+            this.gbAdditionType.Controls.Add(this.cbAddJudger);
+            this.gbAdditionType.Controls.Add(this.cbAddRegulator);
+            this.gbAdditionType.Location = new System.Drawing.Point(78, 78);
+            this.gbAdditionType.Name = "gbAdditionType";
+            this.gbAdditionType.Size = new System.Drawing.Size(200, 100);
+            this.gbAdditionType.TabIndex = 122;
+            this.gbAdditionType.TabStop = false;
+            this.gbAdditionType.Text = "نوع الاضافة او التعديل";
+            // 
+            // cbAddSharia
+            // 
+            this.cbAddSharia.AutoSize = true;
+            this.cbAddSharia.Location = new System.Drawing.Point(134, 72);
+            this.cbAddSharia.Name = "cbAddSharia";
+            this.cbAddSharia.Size = new System.Drawing.Size(60, 17);
+            this.cbAddSharia.TabIndex = 3;
+            this.cbAddSharia.Tag = "2";
+            this.cbAddSharia.Text = " شرعي";
+            this.cbAddSharia.UseVisualStyleBackColor = true;
+            this.cbAddSharia.CheckedChanged += new System.EventHandler(this.cbAdd_CheckedChanged);
+            // 
+            // cbAddExpert
+            // 
+            this.cbAddExpert.AutoSize = true;
+            this.cbAddExpert.Location = new System.Drawing.Point(16, 72);
+            this.cbAddExpert.Name = "cbAddExpert";
+            this.cbAddExpert.Size = new System.Drawing.Size(46, 17);
+            this.cbAddExpert.TabIndex = 2;
+            this.cbAddExpert.Tag = "4";
+            this.cbAddExpert.Text = "خبير";
+            this.cbAddExpert.UseVisualStyleBackColor = true;
+            this.cbAddExpert.CheckedChanged += new System.EventHandler(this.cbAdd_CheckedChanged);
+            // 
+            // cbAddJudger
+            // 
+            this.cbAddJudger.AutoSize = true;
+            this.cbAddJudger.Location = new System.Drawing.Point(16, 27);
+            this.cbAddJudger.Name = "cbAddJudger";
+            this.cbAddJudger.Size = new System.Drawing.Size(50, 17);
+            this.cbAddJudger.TabIndex = 1;
+            this.cbAddJudger.Tag = "3";
+            this.cbAddJudger.Text = "محكم";
+            this.cbAddJudger.UseVisualStyleBackColor = true;
+            this.cbAddJudger.CheckedChanged += new System.EventHandler(this.cbAdd_CheckedChanged);
+            // 
+            // cbAddRegulator
+            // 
+            this.cbAddRegulator.AutoSize = true;
+            this.cbAddRegulator.Location = new System.Drawing.Point(135, 27);
+            this.cbAddRegulator.Name = "cbAddRegulator";
+            this.cbAddRegulator.Size = new System.Drawing.Size(59, 17);
+            this.cbAddRegulator.TabIndex = 0;
+            this.cbAddRegulator.Tag = "1";
+            this.cbAddRegulator.Text = " نظامي";
+            this.cbAddRegulator.UseVisualStyleBackColor = true;
+            this.cbAddRegulator.CheckedChanged += new System.EventHandler(this.cbAdd_CheckedChanged);
             // 
             // frmAddUpdatePractitioner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(1325, 717);
-            this.Controls.Add(this.btnClose);
+            this.ClientSize = new System.Drawing.Size(1384, 1054);
+            this.Controls.Add(this.gbAdditionType);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.tcPractitionernfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -1442,6 +1512,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.gbAdditionType.ResumeLayout(false);
+            this.gbAdditionType.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1461,6 +1533,8 @@
         private System.Windows.Forms.TabControl tcPractitionernfo;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.CheckedListBox clbRegulatoryCasesTypes;
         private System.Windows.Forms.ContextMenuStrip cms;
@@ -1498,6 +1572,11 @@
         private System.Windows.Forms.CheckedListBox clbShariaCasesTypes;
         private System.Windows.Forms.CheckBox chkShariaIsActive;
         private System.Windows.Forms.Label lblShariaID;
+        private System.Windows.Forms.GroupBox gbAdditionType;
+        private System.Windows.Forms.CheckBox cbAddRegulator;
+        private System.Windows.Forms.CheckBox cbAddSharia;
+        private System.Windows.Forms.CheckBox cbAddExpert;
+        private System.Windows.Forms.CheckBox cbAddJudger;
         private System.Windows.Forms.GroupBox gpSubscriptionWay;
         private System.Windows.Forms.RadioButton rbtnRScholarship;
         private System.Windows.Forms.RadioButton rbtnRSpecialSupport;
@@ -1546,7 +1625,5 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnSave;
     }
 }

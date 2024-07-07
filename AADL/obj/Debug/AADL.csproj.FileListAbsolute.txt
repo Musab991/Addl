@@ -361,5 +361,5 @@ C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADL\obj\Debug\ar\AADL
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADL\obj\Debug\AADL.csproj.Up2Date
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADL\obj\Debug\AADL.exe
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADL\obj\Debug\AADL.pdb
-C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADL\obj\Debug\AADL.csproj.Fody.CopyLocal.cache
-C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADL\obj\Debug\AADL.csproj.Fody.RuntimeCopyLocal.cache
+C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADL\bin\Debug\MethodTimer.dll
+C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADL\bin\Debug\MethodTimer.xml

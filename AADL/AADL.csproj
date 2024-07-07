@@ -279,50 +279,50 @@
     <Compile Include="Lists\frmListInfo.Designer.cs">
       <DependentUpon>frmListInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pracititoners\People\controls\ctrlPersonCardWithFilter.cs">
+    <Compile Include="People\controls\ctrlPersonCardWithFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pracititoners\People\controls\ctrlPersonCardWithFilter.Designer.cs">
+    <Compile Include="People\controls\ctrlPersonCardWithFilter.Designer.cs">
       <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pracititoners\People\frmAddUpdatePerson.cs">
+    <Compile Include="People\frmAddUpdatePerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pracititoners\People\frmAddUpdatePerson.Designer.cs">
+    <Compile Include="People\frmAddUpdatePerson.Designer.cs">
       <DependentUpon>frmAddUpdatePerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pracititoners\People\frmSearchPersonInfo.cs">
+    <Compile Include="People\frmSearchPersonInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pracititoners\People\frmSearchPersonInfo.Designer.cs">
+    <Compile Include="People\frmSearchPersonInfo.Designer.cs">
       <DependentUpon>frmSearchPersonInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pracititoners\People\FrmDuplicatedPersonFullNames.cs">
+    <Compile Include="People\FrmDuplicatedPersonFullNames.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pracititoners\People\FrmDuplicatedPersonFullNames.Designer.cs">
+    <Compile Include="People\FrmDuplicatedPersonFullNames.Designer.cs">
       <DependentUpon>FrmDuplicatedPersonFullNames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pracititoners\People\frmListPeople.cs">
+    <Compile Include="People\frmListPeople.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pracititoners\People\frmListPeople.Designer.cs">
+    <Compile Include="People\frmListPeople.Designer.cs">
       <DependentUpon>frmListPeople.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pracititoners\People\frmPersonInfo.cs">
+    <Compile Include="People\frmPersonInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pracititoners\People\frmPersonInfo.Designer.cs">
+    <Compile Include="People\frmPersonInfo.Designer.cs">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalClasses\clsCustomArgs.cs" />
     <Compile Include="GlobalClasses\clsFormat.cs" />
     <Compile Include="GlobalClasses\clsGlobal.cs" />
     <Compile Include="GlobalClasses\clsValidatoin.cs" />
-    <Compile Include="Pracititoners\People\controls\ctrlPersonCard.cs">
+    <Compile Include="People\controls\ctrlPersonCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pracititoners\People\controls\ctrlPersonCard.Designer.cs">
+    <Compile Include="People\controls\ctrlPersonCard.Designer.cs">
       <DependentUpon>ctrlPersonCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Pracititoners\frmAdvancedSearch.cs">
@@ -469,31 +469,31 @@
     <EmbeddedResource Include="Lists\frmListInfo.resx">
       <DependentUpon>frmListInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\controls\ctrlPersonCardWithFilter.resx">
+    <EmbeddedResource Include="People\controls\ctrlPersonCardWithFilter.resx">
       <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\frmAddUpdatePerson.resx">
+    <EmbeddedResource Include="People\frmAddUpdatePerson.resx">
       <DependentUpon>frmAddUpdatePerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\frmSearchPersonInfo.resx">
+    <EmbeddedResource Include="People\frmSearchPersonInfo.resx">
       <DependentUpon>frmSearchPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\FrmDuplicatedPersonFullNames.resx">
+    <EmbeddedResource Include="People\FrmDuplicatedPersonFullNames.resx">
       <DependentUpon>FrmDuplicatedPersonFullNames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\frmListPeople.resx">
+    <EmbeddedResource Include="People\frmListPeople.resx">
       <DependentUpon>frmListPeople.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\frmPersonInfo.aa.resx">
+    <EmbeddedResource Include="People\frmPersonInfo.aa.resx">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\frmPersonInfo.ar.resx">
+    <EmbeddedResource Include="People\frmPersonInfo.ar.resx">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\frmPersonInfo.resx">
+    <EmbeddedResource Include="People\frmPersonInfo.resx">
       <DependentUpon>frmPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pracititoners\People\controls\ctrlPersonCard.resx">
+    <EmbeddedResource Include="People\controls\ctrlPersonCard.resx">
       <DependentUpon>ctrlPersonCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pracititoners\frmAdvancedSearch.resx">
