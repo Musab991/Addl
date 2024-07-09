@@ -83,10 +83,10 @@ namespace AADL.Regulators
 
         private void _HandleNumberOfPages()
         {
-            uint totalJudgersCount = (uint)clsRegulator.Count();
+            uint totalRegulatorsCount = (uint)clsRegulator.Count();
 
-            // Calculate the number of pages depending on "totalJudgersCount"
-            uint numberOfPages = totalJudgersCount > 0 ? (uint)Math.Ceiling((double)totalJudgersCount / clsUtil.RowsPerPage) : 0;
+            // Calculate the number of pages depending on "totalRegulatorsCount"
+            uint numberOfPages = totalRegulatorsCount > 0 ? (uint)Math.Ceiling((double)totalRegulatorsCount / clsUtil.RowsPerPage) : 0;
             
             _totalNumberOfPages = numberOfPages;
 
@@ -404,7 +404,7 @@ namespace AADL.Regulators
 
                 if (MessageBox.Show($"هل انت متاكد انك تريد تريد تفعيل الحساب رقم {RegulatorID} ؟", "تاكيد التفعيل", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    if (clsRegulator.Activate(RegulatorID))
+                    if (clsRegulator.Activate(RegulatorID,(int)clsGlobal.CurrentUser.UserID))
                     {
                         MessageBox.Show($"تم تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

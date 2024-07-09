@@ -348,6 +348,12 @@
     <Compile Include="Pracititoners\frmAddUpdatePractitioner.Designer.cs">
       <DependentUpon>frmAddUpdatePractitioner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Regulators\frmRegulatorDraft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Regulators\frmRegulatorDraft.Designer.cs">
+      <DependentUpon>frmRegulatorDraft.cs</DependentUpon>
+    </Compile>
     <Compile Include="Regulators\frmRegulatorInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -377,6 +383,12 @@
     </Compile>
     <Compile Include="Sharia\frmShariaCard.Designer.cs">
       <DependentUpon>frmShariaCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sharia\frmShariaDraft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sharia\frmShariaDraft.Designer.cs">
+      <DependentUpon>frmShariaDraft.cs</DependentUpon>
     </Compile>
     <Compile Include="Sharia\frmShariaList.cs">
       <SubType>Form</SubType>
@@ -505,6 +517,9 @@
     <EmbeddedResource Include="Pracititoners\frmAddUpdatePractitioner.resx">
       <DependentUpon>frmAddUpdatePractitioner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Regulators\frmRegulatorDraft.resx">
+      <DependentUpon>frmRegulatorDraft.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Regulators\frmRegulatorInfo.resx">
       <DependentUpon>frmRegulatorInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -524,6 +539,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sharia\frmShariaCard.resx">
       <DependentUpon>frmShariaCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sharia\frmShariaDraft.resx">
+      <DependentUpon>frmShariaDraft.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sharia\frmShariaList.resx">
       <DependentUpon>frmShariaList.cs</DependentUpon>

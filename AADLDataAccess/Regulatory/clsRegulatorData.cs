@@ -572,9 +572,9 @@ namespace AADLDataAccess
 
         }
 
-        public static DataTable All()
-                   => clsDataAccessHelper.All("SP_GetAllRegulators");
-
+        public static DataTable All(string StoredProcedure )
+                   => clsDataAccessHelper.All(StoredProcedure);
+   
         /// <summary>
         /// Able to handle deleting process for both regulator info , and its cases practices.
         /// Also,it handles it relationship with Lawyer Profile , and Practitioner profile
@@ -585,12 +585,11 @@ namespace AADLDataAccess
         public static bool DeletePermanently(int? RegulatorID)
             => clsDataAccessHelper.Delete("SP_DeleteRegulatorPermanently", "RegulatorID", RegulatorID);
 
-        public static bool Deactivate(int RegulatorID)
-            => clsDataAccessHelper.Deactivate("SP_DeactivateRegulator", "RegulatorID", RegulatorID);
+      
         public static bool Deactivate(int RegulatorID,int LastEditByUserID)
           => clsDataAccessHelper.Deactivate("SP_DeactivateRegulator", "RegulatorID", RegulatorID,"LastEditByUserID", LastEditByUserID);
-        public static bool Activate(int RegulatorID)
-            => clsDataAccessHelper.Activate("SP_ActivateRegulator", "RegulatorID", RegulatorID);
+        public static bool Activate(int RegulatorID, int LastEditByUserID)
+            => clsDataAccessHelper.Activate("SP_ActivateRegulator", "RegulatorID", RegulatorID, "LastEditByUserID", LastEditByUserID);
         public static bool ExistsByRegulatorID(int? shariaID)
          => clsDataAccessHelper.Exists("SP_IsRegulatorExistsByRegulatorID", "RegulatorID", shariaID);
 
@@ -602,9 +601,10 @@ namespace AADLDataAccess
         public static bool ExistsByMembershipNumber(string MembershipNumber)
         => clsDataAccessHelper.Exists("SP_IsRegulatorExistsByMembershipNumber", "MembershipNumber", MembershipNumber);
   
-        public static int Count() => clsDataAccessHelper.Count("SP_GetTotalRegulatorsCount");
-        public static DataTable GetRegulatorsPerPage(ushort pageNumber, uint rowsPerPage) => clsDataAccessHelper.AllInPages(pageNumber, rowsPerPage, "SP_GetRegulatorsPerPage");
- 
+        public static int Count(bool IsDraft = false) => clsDataAccessHelper.Count("SP_GetTotalRegulatorsCount",IsDraft);
+
+        public static DataTable GetRegulatorsPerPage(ushort pageNumber, uint rowsPerPage,bool IsDraft=false) => clsDataAccessHelper.AllInPages(pageNumber, rowsPerPage, "SP_GetRegulatorsPerPage",IsDraft);
+
         public static bool IsExistsInWhiteListByPractitionerIDAndPractitionerTypeID(int? PractitionerID, int? PractitionerTypeID)
         => clsDataAccessHelper.Exists("SP_IsPractitionerInWhiteList", "PractitionerID", PractitionerID, "PractitionerTypeID", PractitionerTypeID);
 

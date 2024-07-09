@@ -138,5 +138,17 @@ namespace AADL
             frmShariaList form= new frmShariaList();
             form.ShowDialog();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            frmRegulatorDraft draft = new frmRegulatorDraft();
+            draft.ShowDialog();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            frmShariaDraft draft = new frmShariaDraft();
+            draft.ShowDialog();
+        }
     }
 }

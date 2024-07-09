@@ -123,9 +123,9 @@ namespace DVLD.Classes
                 headerStyle.BackColor = JudgersMainColor;
             else if(dgv.Name == "dgvExperts")
                 headerStyle.BackColor = ExpertsMainColor;
-            else if (dgv.Name == "dgvRegulators")
+            else if (dgv.Name == "dgvRegulators"|| dgv.Name == "dgvRegulatorsDraft")
                 headerStyle.BackColor = RegulatorsMainColor;
-            else if (dgv.Name == "dgvSharias")
+            else if (dgv.Name == "dgvSharias" || dgv.Name == "dgvShariasDraft")
                 headerStyle.BackColor = ShariasMainColor;
 
             dgv.ColumnHeadersDefaultCellStyle = headerStyle;

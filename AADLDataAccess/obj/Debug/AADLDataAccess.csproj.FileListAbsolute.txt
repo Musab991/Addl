@@ -240,5 +240,5 @@ C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLDataAccess\obj\Deb
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLDataAccess\obj\Debug\AADLData.AE2D893F.Up2Date
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLDataAccess\obj\Debug\AADLDataAccess.dll
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLDataAccess\obj\Debug\AADLDataAccess.pdb
-C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLDataAccess\bin\Debug\MethodTimer.dll
-C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLDataAccess\bin\Debug\MethodTimer.xml
+C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLDataAccess\obj\Debug\AADLDataAccess.csproj.Fody.CopyLocal.cache
+C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLDataAccess\obj\Debug\AADLDataAccess.csproj.Fody.RuntimeCopyLocal.cache

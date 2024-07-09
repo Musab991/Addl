@@ -2,7 +2,7 @@
 using AADLBusiness.Lists.Closed;
 using AADLBusiness.Lists.WhiteList;
 using AADLDataAccess.Expert;
-using AADLDataAccess.Judger;
+using AADLDataAccess.Expert;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -196,21 +196,23 @@ namespace AADLBusiness.Expert
 
             return false;
         }
-
-        public static bool Deactivate(int expertID)
-            => clsExpertData.Deactivate(expertID);
-
-        public static bool Activate(int expertID)
-            => clsExpertData.Activate(expertID);
-
         public static bool DeletePermanently(int expertID)
             => clsExpertData.DeletePermanently(expertID);
 
+        public static bool Deactivate(int ExpertID, int LastEditByUserID)
+             => clsExpertData.Deactivate(ExpertID, LastEditByUserID);
+        public static bool Activate(int ExpertID, int LastEditByUserID)
+            => clsExpertData.Activate(ExpertID, LastEditByUserID);
         public static int Count()
             => clsExpertData.Count();
+        public static int CountDraft()
+           => clsExpertData.Count(true);
 
         public static DataTable GetExpertsPerPage(ushort pageNumber, uint rowsPerPage)
             => clsExpertData.GetExpertsPerPage(pageNumber, rowsPerPage);
+
+        public static DataTable GetExpertsPerPageDraft(ushort pageNumber, uint rowsPerPage)
+         => clsExpertData.GetExpertsPerPage(pageNumber, rowsPerPage, true);
 
         private static bool _ExistsByExpertID(int? expertID)
             => clsExpertData.ExistsByExpertID(expertID);
