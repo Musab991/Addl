@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AADL_DataAccess.HelperClasses;
 
 namespace AADLDataAccess.Sharia
 {
@@ -141,97 +142,11 @@ namespace AADLDataAccess.Sharia
 
             return isFound;
         }
-        public static int AddNewShariaCaseType(string ShariaCaseTypeName, int CreatedByAdminID)
-        {
-            int NewShariaCaseTypeID = -1;
-
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-
-                using (SqlCommand command = new SqlCommand("SP_AddNewShariaCaseType", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@ShariaCaseTypeName", ShariaCaseTypeName);
-                    command.Parameters.AddWithValue("@CreatedByAdminID", CreatedByAdminID);
-                    SqlParameter outputIdParam = new SqlParameter("@NewShariaCaseTypeID", SqlDbType.Int)
-                    {
-                        Direction = ParameterDirection.Output
-                    };
-                    command.Parameters.Add(outputIdParam);
-                    try
-                    {
-                        connection.Open();
-
-                        NewShariaCaseTypeID = (int)command.Parameters["@NewShariaCaseTypeID"].Value;
-
-
-                    }
-                    catch (SqlException ex)
-                    {
-                        clsDataAccessSettings.WriteEventToLogFile("Review your clsShariaCaseTypeData class data access layer ,AddNewShariaCaseType\n Exception:" +
-                            ex.Message, EventLogEntryType.Error);
-                        Console.WriteLine(ex.Message);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        clsDataAccessSettings.WriteEventToLogFile("Review your clsShariaCaseTypeData class data access layer, AddNewShariaCaseType\n Exception:" +
-                            ex.Message, EventLogEntryType.Error);
-                        Console.WriteLine(ex.Message);
-
-                    }
-
-                }
-
-                return NewShariaCaseTypeID;
-
-            }
-
-        }
-        public static bool UpdateShariaCaseType(int ShariaCaseTypeID, string ShariaCaseTypeName, int CreatedByAdminID)
-        {
-            int rowsAffected = 0;
-
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-
-                using (SqlCommand command = new SqlCommand("SP_UpdateShariaCaseType", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@ShariaCaseTypeID", ShariaCaseTypeID);
-                    command.Parameters.AddWithValue("@ShariaCaseTypeName", ShariaCaseTypeName);
-                    command.Parameters.AddWithValue("@CreatedByAdminID", CreatedByAdminID);
-
-                    try
-                    {
-                        connection.Open();
-                        rowsAffected = command.ExecuteNonQuery();
-                    }
-                    catch (SqlException ex)
-                    {
-                        clsDataAccessSettings.WriteEventToLogFile("Review your clsShariaCaseTypeData class data access layer ,UpdateShariaCaseType\n Exception:" +
-                            ex.Message, EventLogEntryType.Error);
-                        Console.WriteLine(ex.Message);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        clsDataAccessSettings.WriteEventToLogFile("Review your clsShariaCaseTypeData class data access layer ,UpdateShariaCaseType\n Exception:" +
-                            ex.Message, EventLogEntryType.Error);
-                        Console.WriteLine(ex.Message);
-
-                    }
-
-                }
-
-            }
-
-            return rowsAffected > 0;
-
-        }
-        public static bool DeleteShariaCaseType(int? ShariaCaseTypeID)
+        public static int? Add(string name, int createdByAdminID)
+            => clsCaseTypeData.Add(name, createdByAdminID, clsCaseTypeData.enWhichPractitioner.Sharia);
+        public static bool Update(int ID, string name)
+            => clsCaseTypeData.Update(ID, name, clsCaseTypeData.enWhichPractitioner.Sharia);
+        public static bool Delete(int? ShariaCaseTypeID)
         {
 
             int rowsAffected = 0;
@@ -358,6 +273,15 @@ namespace AADLDataAccess.Sharia
             return dt;
 
         }
+
+        public static bool Delete(int ID)
+            => clsCaseTypeData.Delete(ID, clsCaseTypeData.enWhichPractitioner.Sharia);
+
+        public static bool Exists(string name)
+            => clsCaseTypeData.Exists(name, clsCaseTypeData.enWhichPractitioner.Sharia);
+
+        public static DataTable All()
+            => clsDataAccessHelper.All("SP_GetAllExpertCasesTypes");
 
     }
 }

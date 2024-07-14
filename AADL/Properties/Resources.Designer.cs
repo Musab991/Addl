@@ -283,6 +283,16 @@ namespace AADL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap casesTypes_512 {
+            get {
+                object obj = ResourceManager.GetObject("casesTypes_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap client__1_ {
             get {
                 object obj = ResourceManager.GetObject("client (1)", resourceCulture);
