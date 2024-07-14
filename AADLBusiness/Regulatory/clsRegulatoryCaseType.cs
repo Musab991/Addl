@@ -8,6 +8,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AADLDataAccess.Sharia;
+using AADLDataAccess.Expert;
 
 namespace AADLBusiness
 {
@@ -15,7 +17,7 @@ namespace AADLBusiness
     {
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
-        public int RegulatoryCaseTypeID { get; set; }
+        public int? RegulatoryCaseTypeID { get; set; }
 
         public string RegulatoryCaseTypeName { get; set; }
 
@@ -63,27 +65,26 @@ namespace AADLBusiness
                 return null;
 
         }
-        public  static DataTable GetAllRegulatoryCaseTypes()
+        public  static DataTable All()
         {
-            return  clsRegulatoryCaseTypeData.GetAllRegulatoryCaseTypes();
+            return  clsRegulatoryCaseTypeData.All();
         }
      
         private bool _AddNewRegulatoryCaseType()
         {
             //call DataAccess Layer 
 
-            this.RegulatoryCaseTypeID = clsRegulatoryCaseTypeData.AddNewRegulatoryCaseType(this.RegulatoryCaseTypeName,
+            this.RegulatoryCaseTypeID = clsRegulatoryCaseTypeData.Add(this.RegulatoryCaseTypeName,
                 this.CreatedByAdminID);
 
-            return (this.RegulatoryCaseTypeID != -1);
+            return (this.RegulatoryCaseTypeID.HasValue);
 
         }
         private bool _UpdateRegulatoryCaseType()
         {
             //call DataAccess Layer 
 
-            return clsRegulatoryCaseTypeData.UpdateRegulatoryCaseType(this.RegulatoryCaseTypeID, this.RegulatoryCaseTypeName,
-                this.CreatedByAdminID);
+            return clsRegulatoryCaseTypeData.Update((int)this.RegulatoryCaseTypeID, this.RegulatoryCaseTypeName);
         }
         public bool Save()
         {
@@ -110,6 +111,11 @@ namespace AADLBusiness
             return false;
         }
 
-    }
+        public static bool Delete(int caseID)
+            => clsRegulatoryCaseTypeData.Delete(caseID);
 
+        public static bool Exists(string name)
+            => clsRegulatoryCaseTypeData.Exists(name);
+
+    }
 }

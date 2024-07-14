@@ -1,4 +1,5 @@
-﻿using AADLDataAccess.Expert;
+﻿using AADLDataAccess;
+using AADLDataAccess.Expert;
 using System.Data;
 
 namespace AADLBusiness.Expert
@@ -11,41 +12,36 @@ namespace AADLBusiness.Expert
         public int? ExpertCaseTypeID { get; set; }
         public string ExpertCaseTypeName { get; set; }
         public int? CreatedByAdminID { get; set; }
-        public int? LastEditByAdminID { get; set; }
 
         public clsExpertCaseType()
         {
             ExpertCaseTypeID = null;
             ExpertCaseTypeName = string.Empty;
             CreatedByAdminID = null;
-            LastEditByAdminID = null;
 
             Mode = enMode.AddNew;
         }
 
         private clsExpertCaseType(int? expertCaseTypeID,
-            string expertCaseTypeName, int? createdByAdminID, int? lastEditByAdminID)
+            string expertCaseTypeName, int? createdByAdminID)
         {
             ExpertCaseTypeID = expertCaseTypeID;
             ExpertCaseTypeName = expertCaseTypeName;
             CreatedByAdminID = createdByAdminID;
-            LastEditByAdminID = lastEditByAdminID;
 
             Mode = enMode.Update;
         }
 
         private bool _Add()
         {
-            ExpertCaseTypeID = clsExpertCaseTypeData.Add(ExpertCaseTypeName,
-                CreatedByAdminID.Value, LastEditByAdminID);
+            ExpertCaseTypeID = clsExpertCaseTypeData.Add(ExpertCaseTypeName, CreatedByAdminID.Value);
 
             return (ExpertCaseTypeID.HasValue);
         }
 
         private bool _Update()
         {
-            return clsExpertCaseTypeData.Update(ExpertCaseTypeID ?? -1, ExpertCaseTypeName,
-                CreatedByAdminID.Value, LastEditByAdminID);
+            return clsExpertCaseTypeData.Update((int)ExpertCaseTypeID, ExpertCaseTypeName);
         }
 
         public bool Save()
@@ -74,34 +70,32 @@ namespace AADLBusiness.Expert
         {
             string expertCaseTypeName = string.Empty;
             int? createdByAdminID = null;
-            int? lastEditByAdminID = null;
 
             bool isFound = clsExpertCaseTypeData.GetInfoByCaseTypeID(expertCaseTypeID,
-                ref expertCaseTypeName, ref createdByAdminID, ref lastEditByAdminID);
+                ref expertCaseTypeName, ref createdByAdminID);
 
-            return (isFound) ? (new clsExpertCaseType(expertCaseTypeID, expertCaseTypeName, createdByAdminID, lastEditByAdminID)) : null;
+            return (isFound) ? (new clsExpertCaseType(expertCaseTypeID, expertCaseTypeName, createdByAdminID)) : null;
         }
 
         public static clsExpertCaseType Find(string expertCaseTypeName)
         {
             int? expertCaseTypeID = null;
             int? createdByAdminID = null;
-            int? lastEditByAdminID = null;
 
             bool isFound = clsExpertCaseTypeData.GetInfoByCaseTypeName(expertCaseTypeName,
-                ref expertCaseTypeID, ref createdByAdminID, ref lastEditByAdminID);
+                ref expertCaseTypeID, ref createdByAdminID);
 
             return (isFound) ? (new clsExpertCaseType(expertCaseTypeID,
-                expertCaseTypeName, createdByAdminID, lastEditByAdminID)) : null;
+                expertCaseTypeName, createdByAdminID)) : null;
         }
 
-        public static bool Delete(int? expertCaseTypeID)
-        => clsExpertCaseTypeData.Delete(expertCaseTypeID);
+        public static bool Delete(int expertCaseTypeID)
+            => clsExpertCaseTypeData.Delete(expertCaseTypeID);
 
-        public static bool Exists(int? expertCaseTypeID)
-        => clsExpertCaseTypeData.Exists(expertCaseTypeID);
+        public static bool Exists(string name)
+            => clsExpertCaseTypeData.Exists(name);
 
         public static DataTable All()
-        => clsExpertCaseTypeData.All();
+            => clsExpertCaseTypeData.All();
     }
 }
