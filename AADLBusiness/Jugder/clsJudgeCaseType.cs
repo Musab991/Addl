@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using AADLBusiness;
+using AADLDataAccess;
 using AADLDataAccess.Judger;
 
 namespace AADLBusiness.Judger
@@ -11,7 +12,7 @@ namespace AADLBusiness.Judger
 
         public enMode Mode = enMode.AddNew;
 
-        public int JudgeCaseTypeID { get; set; }
+        public int? JudgeCaseTypeID { get; set; }
         public string JudgeCaseTypeName { get; set; }
         public int CreatedByAdminID { get; set; }
         public int? LastEditByAdminID { get; set; }
@@ -56,7 +57,6 @@ namespace AADLBusiness.Judger
         {
 
             int JudgeCaseTypeID = -1, CreatedByAdminID = -1;
-            int? LastEditByAdminID = null;
 
             if (clsJudgeCaseTypeData.GetJudgeCaseTypeInfoByCaseTypeName(JudgeCaseTypeName, ref JudgeCaseTypeID, ref CreatedByAdminID))
                 return new clsJudgeCaseType(JudgeCaseTypeID, JudgeCaseTypeName, CreatedByAdminID);
@@ -64,14 +64,15 @@ namespace AADLBusiness.Judger
                 return null;
         }
 
-        public static bool DeleteJudgeCaseType(int JudgeCaseTypeID)
-        {
-            return clsJudgeCaseTypeData.DeleteJudgeCaseType(JudgeCaseTypeID);
-        }
+        public static bool Delete(int JudgeCaseTypeID)
+            => clsJudgeCaseTypeData.Delete(JudgeCaseTypeID);
 
-        public static DataTable GetAllJudgeCaseTypes()
+        public static bool Exists(string name)
+            => clsJudgeCaseTypeData.Exists(name);
+
+        public static DataTable All()
         {
-            return clsJudgeCaseTypeData.GetAllJudgeCaseTypes();
+            return clsJudgeCaseTypeData.All();
         }
 
         public bool Save()
@@ -97,14 +98,14 @@ namespace AADLBusiness.Judger
 
         private bool _AddNew()
         {
-            this.JudgeCaseTypeID = clsJudgeCaseTypeData.AddNewJudgeCaseType(this.JudgeCaseTypeName, this.CreatedByAdminID);
+            this.JudgeCaseTypeID = clsJudgeCaseTypeData.Add(this.JudgeCaseTypeName, this.CreatedByAdminID);
 
-            return (this.JudgeCaseTypeID != -1);
+            return (this.JudgeCaseTypeID.HasValue);
         }
 
         private bool _Update()
         {
-            return clsJudgeCaseTypeData.UpdateJudgeCaseType(this.JudgeCaseTypeID, this.JudgeCaseTypeName);
+            return clsJudgeCaseTypeData.Update((int)this.JudgeCaseTypeID, this.JudgeCaseTypeName);
         }
 
     }

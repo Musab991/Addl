@@ -188,6 +188,7 @@
     <Compile Include="clsCountryData.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsPersonData.cs" />
+    <Compile Include="ManagePractitionerCasesTypes.cs" />
     <Compile Include="Regulatory\clsRegulatorData.cs" />
     <Compile Include="Lists\ListReasons\clsListReasonsData.cs" />
     <Compile Include="Regulatory\clsRegulatoryCaseTypeData.cs" />

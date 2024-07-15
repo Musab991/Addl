@@ -17,7 +17,7 @@ namespace AADLBusiness.Sharia
     
         public enMode Mode = enMode.AddNew;
     
-        public int ShariaCaseTypeID { get; set; }
+        public int? ShariaCaseTypeID { get; set; }
 
         public string ShariaCaseTypeName { get; set; }
 
@@ -70,7 +70,7 @@ namespace AADLBusiness.Sharia
 
             }
     
-        public static DataTable GetAllShariaCaseTypes()
+        public static DataTable All()
             {
                 return clsShariaCaseTypeData.GetAllShariaCaseTypes();
             }
@@ -79,10 +79,10 @@ namespace AADLBusiness.Sharia
             {
                 //call DataAccess Layer 
 
-                this.ShariaCaseTypeID = clsShariaCaseTypeData.AddNewShariaCaseType(this.ShariaCaseTypeName,
+                this.ShariaCaseTypeID = clsShariaCaseTypeData.Add(this.ShariaCaseTypeName,
                     this.CreatedByAdminID);
 
-                return (this.ShariaCaseTypeID != -1);
+                return (this.ShariaCaseTypeID.HasValue);
 
             }
     
@@ -90,8 +90,7 @@ namespace AADLBusiness.Sharia
             {
                 //call DataAccess Layer 
 
-                return clsShariaCaseTypeData.UpdateShariaCaseType(this.ShariaCaseTypeID, this.ShariaCaseTypeName,
-                    this.CreatedByAdminID);
+                return clsShariaCaseTypeData.Update((int)this.ShariaCaseTypeID, this.ShariaCaseTypeName);
             }
     
         public bool Save()
@@ -119,8 +118,10 @@ namespace AADLBusiness.Sharia
                 return false;
             }
 
+        public static bool Delete(int caseID)
+            => clsShariaCaseTypeData.Delete(caseID);
 
+        public static bool Exists(string name)
+            => clsShariaCaseTypeData.Exists(name);
     }
-
-
 }
