@@ -150,5 +150,17 @@ namespace AADL
             frmShariaDraft draft = new frmShariaDraft();
             draft.ShowDialog();
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            frmJuderDraft draft = new frmJuderDraft();
+            draft.ShowDialog();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            frmExpertDraft draft = new frmExpertDraft();
+            draft.ShowDialog();
+        }
     }
 }

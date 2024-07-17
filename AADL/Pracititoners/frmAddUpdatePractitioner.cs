@@ -1499,9 +1499,46 @@ namespace AADL.Regulators
             BackColor = System.Drawing.Color.Black;
         }
 
-        private void ListWasCreatedUpdated(object sender, EventArgs e)
+        private void ListWasCreatedUpdated(object sender, ctrlAddUpdateList.CustomEventArgs e)
         {
             evPractitionerUpdated(sender,e);
+            
+            switch (e.practitionerType)
+            {
+            
+                case 0://all
+                    {
+                        _SaveRegulator();
+                        _SaveJudger();
+                        _SaveSharia();
+                        _SaveExpert();
+                        break;
+                    }
+                case 1://regulator
+                    {
+                        _SaveRegulator();
+                       
+                        break;
+                    }
+                case 2://sharia
+                    {
+                 
+                        _SaveSharia();
+                        break;
+                    }
+                case 3://judger
+                    {
+                        _SaveJudger();
+                        break;
+                    }
+                case 4://expert
+                    {
+                        _SaveExpert();
+                        break;
+                    }
+         
+            }
+
         }
         private void btnBlackList_Click(object sender, EventArgs e)
         {

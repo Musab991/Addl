@@ -119,9 +119,9 @@ namespace DVLD.Classes
             };
 
             // Set the main color 
-            if(dgv.Name == "dgvJudgers") 
+            if(dgv.Name == "dgvJudgers"|| dgv.Name == "dgvJudgersDraft") 
                 headerStyle.BackColor = JudgersMainColor;
-            else if(dgv.Name == "dgvExperts")
+            else if(dgv.Name == "dgvExperts" || dgv.Name == "dgvExpertsDraft")
                 headerStyle.BackColor = ExpertsMainColor;
             else if (dgv.Name == "dgvRegulators"|| dgv.Name == "dgvRegulatorsDraft")
                 headerStyle.BackColor = RegulatorsMainColor;

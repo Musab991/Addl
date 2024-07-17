@@ -41,7 +41,6 @@ namespace AADL.Regulators
                     dgvRegulatorsDraft.Columns["RegulatorCasesPractice"].Width = 130;
                     //Change the columns name
                     dgvRegulatorsDraft.Columns["RegulatorID"].HeaderText = "الرقم التعريفي";
-                    dgvRegulatorsDraft.Columns["MembershipNumber"].HeaderText = "رقم العضوية";
                     dgvRegulatorsDraft.Columns["PersonID"].HeaderText = "رقم التعريفي لملف البيانات الشخصية";
                     dgvRegulatorsDraft.Columns["CreatedByUserName"].HeaderText = "تم الانشاء من قبل  ";
                     dgvRegulatorsDraft.Columns["IssueDate"].HeaderText = "تاريخ الانشاء";

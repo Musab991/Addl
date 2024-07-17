@@ -46,9 +46,9 @@ namespace AADL.Lists
             this.Close();
         }
 
-        private void TriggerEvent(object sender, EventArgs e)
+        private void TriggerEvent(object sender, ctrlAddUpdateList.CustomEventArgs e)
         {
-            evCustomEventAddUpdateList?.Invoke(this, EventArgs.Empty);
+            evCustomEventAddUpdateList?.Invoke(this,e );
 
         }
         private void FrmAddUpdateList_Load(object sender, EventArgs e)

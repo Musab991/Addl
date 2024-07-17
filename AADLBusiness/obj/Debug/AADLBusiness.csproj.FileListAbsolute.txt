@@ -246,5 +246,5 @@ C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLBusiness\obj\Debug
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLBusiness\obj\Debug\AADLBusi.505918E1.Up2Date
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLBusiness\obj\Debug\AADLBusiness.dll
 C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLBusiness\obj\Debug\AADLBusiness.pdb
-C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLBusiness\obj\Debug\AADLBusiness.csproj.Fody.CopyLocal.cache
-C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLBusiness\obj\Debug\AADLBusiness.csproj.Fody.RuntimeCopyLocal.cache
+C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLBusiness\bin\Debug\MethodTimer.dll
+C:\Users\XIGMATEK\Documents\repo\abdullah_version\Aadl_v3\AADLBusiness\bin\Debug\MethodTimer.xml
