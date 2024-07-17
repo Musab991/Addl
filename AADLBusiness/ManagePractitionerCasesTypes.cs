@@ -13,7 +13,6 @@ namespace AADLBusiness
 
         public int? ID { get; set; }
         public string Name { get; set; }
-        public int? CreatedByAdminID { get; set; }
         public static enWhichPractitioner WhichPractitioner {  get; set; }
 
         private static clsRegulatoryCaseType _RegulatorCaseType;
@@ -25,7 +24,6 @@ namespace AADLBusiness
         {
             ID = null;
             Name = null;
-            CreatedByAdminID = null;
             WhichPractitioner = whichPractitioner;
             Mode = enMode.AddNew;
 
@@ -46,11 +44,10 @@ namespace AADLBusiness
             }
         }
 
-        private clsCaseType(int? id, string name, int? createdByAdminID, enWhichPractitioner whichPractitioner)
+        private clsCaseType(int? id, string name, enWhichPractitioner whichPractitioner)
         {
             ID = id;
             Name = name;
-            CreatedByAdminID = createdByAdminID;
             WhichPractitioner = whichPractitioner;
 
             Mode = enMode.Update;
@@ -64,7 +61,6 @@ namespace AADLBusiness
                 case enWhichPractitioner.Regulator:
                     _RegulatorCaseType = new clsRegulatoryCaseType();
                     _RegulatorCaseType.RegulatoryCaseTypeName = Name;
-                    _RegulatorCaseType.CreatedByAdminID = (int)CreatedByAdminID;
                     isAdded = _RegulatorCaseType.Save();
                     if(isAdded) this.ID = _RegulatorCaseType.RegulatoryCaseTypeID;
                     return isAdded;
@@ -72,7 +68,6 @@ namespace AADLBusiness
                 case enWhichPractitioner.Sharia:
                     _ShariaCaseType = new clsShariaCaseType();
                     _ShariaCaseType.ShariaCaseTypeName = Name;
-                    _ShariaCaseType.CreatedByAdminID = (int)CreatedByAdminID;
                     isAdded = _ShariaCaseType.Save();
                     if (isAdded) this.ID = _ShariaCaseType.ShariaCaseTypeID;
                     return isAdded;
@@ -80,7 +75,6 @@ namespace AADLBusiness
                 case enWhichPractitioner.Judger:
                     _JudgetorCaseType = new clsJudgeCaseType();
                     _JudgetorCaseType.JudgeCaseTypeName = Name;
-                    _JudgetorCaseType.CreatedByAdminID = (int)CreatedByAdminID;
                     isAdded = _JudgetorCaseType.Save();
                     if (isAdded) this.ID = _JudgetorCaseType.JudgeCaseTypeID;
                     return isAdded;
@@ -88,7 +82,6 @@ namespace AADLBusiness
             case enWhichPractitioner.Expert:
                     _ExpertCaseType = new clsExpertCaseType();
                     _ExpertCaseType.ExpertCaseTypeName = Name;
-                    _ExpertCaseType.CreatedByAdminID = (int)CreatedByAdminID;
                     isAdded = _ExpertCaseType.Save();
                     if (isAdded) this.ID = _ExpertCaseType.ExpertCaseTypeID;
                     return isAdded;
@@ -151,19 +144,19 @@ namespace AADLBusiness
             {
                 case enWhichPractitioner.Regulator:
                     _RegulatorCaseType = clsRegulatoryCaseType.Find(ID);
-                    return _RegulatorCaseType != null ? new clsCaseType(_RegulatorCaseType.RegulatoryCaseTypeID, _RegulatorCaseType.RegulatoryCaseTypeName, _RegulatorCaseType.CreatedByAdminID, whichPractitioner) : null;
+                    return _RegulatorCaseType != null ? new clsCaseType(_RegulatorCaseType.RegulatoryCaseTypeID, _RegulatorCaseType.RegulatoryCaseTypeName, whichPractitioner) : null;
 
                 case enWhichPractitioner.Sharia:
                     _ShariaCaseType = clsShariaCaseType.Find(ID);
-                    return _ShariaCaseType != null ? new clsCaseType(_ShariaCaseType.ShariaCaseTypeID, _ShariaCaseType.ShariaCaseTypeName, _ShariaCaseType.CreatedByAdminID, whichPractitioner) : null;
+                    return _ShariaCaseType != null ? new clsCaseType(_ShariaCaseType.ShariaCaseTypeID, _ShariaCaseType.ShariaCaseTypeName, whichPractitioner) : null;
 
                 case enWhichPractitioner.Judger:
                     _JudgetorCaseType = clsJudgeCaseType.Find(ID);
-                    return _JudgetorCaseType != null ? new clsCaseType(_JudgetorCaseType.JudgeCaseTypeID, _JudgetorCaseType.JudgeCaseTypeName, _JudgetorCaseType.CreatedByAdminID, whichPractitioner) : null;
+                    return _JudgetorCaseType != null ? new clsCaseType(_JudgetorCaseType.JudgeCaseTypeID, _JudgetorCaseType.JudgeCaseTypeName, whichPractitioner) : null;
 
                 case enWhichPractitioner.Expert:
                     _ExpertCaseType = clsExpertCaseType.Find(ID);
-                    return _ExpertCaseType != null ? new clsCaseType(_ExpertCaseType.ExpertCaseTypeID, _ExpertCaseType.ExpertCaseTypeName, _ExpertCaseType.CreatedByAdminID, whichPractitioner) : null;
+                    return _ExpertCaseType != null ? new clsCaseType(_ExpertCaseType.ExpertCaseTypeID, _ExpertCaseType.ExpertCaseTypeName, whichPractitioner) : null;
 
                 default:
                     return null;
@@ -176,19 +169,19 @@ namespace AADLBusiness
             {
                 case enWhichPractitioner.Regulator:
                     _RegulatorCaseType = clsRegulatoryCaseType.Find(name);
-                    return _RegulatorCaseType != null ? new clsCaseType(_RegulatorCaseType.RegulatoryCaseTypeID, _RegulatorCaseType.RegulatoryCaseTypeName, _RegulatorCaseType.CreatedByAdminID, whichPractitioner) : null;
+                    return _RegulatorCaseType != null ? new clsCaseType(_RegulatorCaseType.RegulatoryCaseTypeID, _RegulatorCaseType.RegulatoryCaseTypeName, whichPractitioner) : null;
 
                 case enWhichPractitioner.Sharia:
                     _ShariaCaseType = clsShariaCaseType.Find(name);
-                    return _ShariaCaseType != null ? new clsCaseType(_ShariaCaseType.ShariaCaseTypeID, _ShariaCaseType.ShariaCaseTypeName, _ShariaCaseType.CreatedByAdminID, whichPractitioner) : null;
+                    return _ShariaCaseType != null ? new clsCaseType(_ShariaCaseType.ShariaCaseTypeID, _ShariaCaseType.ShariaCaseTypeName, whichPractitioner) : null;
 
                 case enWhichPractitioner.Judger:
                     _JudgetorCaseType = clsJudgeCaseType.Find(name);
-                    return _JudgetorCaseType != null ? new clsCaseType(_JudgetorCaseType.JudgeCaseTypeID, _JudgetorCaseType.JudgeCaseTypeName, _JudgetorCaseType.CreatedByAdminID, whichPractitioner) : null;
+                    return _JudgetorCaseType != null ? new clsCaseType(_JudgetorCaseType.JudgeCaseTypeID, _JudgetorCaseType.JudgeCaseTypeName, whichPractitioner) : null;
 
                 case enWhichPractitioner.Expert:
                     _ExpertCaseType = clsExpertCaseType.Find(name);
-                    return _ExpertCaseType != null ? new clsCaseType(_ExpertCaseType.ExpertCaseTypeID, _ExpertCaseType.ExpertCaseTypeName, _ExpertCaseType.CreatedByAdminID, whichPractitioner) : null;
+                    return _ExpertCaseType != null ? new clsCaseType(_ExpertCaseType.ExpertCaseTypeID, _ExpertCaseType.ExpertCaseTypeName, whichPractitioner) : null;
 
                 default:
                     return null;

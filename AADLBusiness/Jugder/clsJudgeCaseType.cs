@@ -14,29 +14,19 @@ namespace AADLBusiness.Judger
 
         public int? JudgeCaseTypeID { get; set; }
         public string JudgeCaseTypeName { get; set; }
-        public int CreatedByAdminID { get; set; }
-        public int? LastEditByAdminID { get; set; }
-
-        public clsAdmin CreadedByAdminInfo { get; set; }
-        public clsAdmin LastEditByAdminInfo { get; set; }
 
         public clsJudgeCaseType()
         {
             this.JudgeCaseTypeID = -1;
             this.JudgeCaseTypeName = null;
-            this.CreatedByAdminID = -1;
 
             Mode = enMode.AddNew;
         }
 
-        private clsJudgeCaseType(int JudgeCaseTypeID, string JudgeCaseTypeName, int CreatedByAdminID)
+        private clsJudgeCaseType(int JudgeCaseTypeID, string JudgeCaseTypeName)
         {
             this.JudgeCaseTypeID = JudgeCaseTypeID;
             this.JudgeCaseTypeName = JudgeCaseTypeName;
-            this.CreatedByAdminID = CreatedByAdminID;
-            this.CreadedByAdminInfo = clsAdmin.FindByAdminID(CreatedByAdminID);
-            this.LastEditByAdminID = LastEditByAdminID;
-            if (LastEditByAdminID != null) this.LastEditByAdminInfo = clsAdmin.FindByAdminID(LastEditByAdminID);
 
             Mode = enMode.Update;
         }
@@ -44,22 +34,19 @@ namespace AADLBusiness.Judger
         public static clsJudgeCaseType Find(int JudgeCaseTypeID)
         {
             string JudgeCaseTypeName = "";
-            int CreatedByAdminID = -1;
-            int? LastEditByAdminID = null;
 
-            if (clsJudgeCaseTypeData.GetJudgeCaseTypeInfoByCaseTypeID(JudgeCaseTypeID, ref JudgeCaseTypeName, ref CreatedByAdminID))
-                return new clsJudgeCaseType(JudgeCaseTypeID, JudgeCaseTypeName, CreatedByAdminID);
+            if (clsJudgeCaseTypeData.GetJudgeCaseTypeInfoByCaseTypeID(JudgeCaseTypeID, ref JudgeCaseTypeName))
+                return new clsJudgeCaseType(JudgeCaseTypeID, JudgeCaseTypeName);
             else
                 return null;
         }
 
         public static clsJudgeCaseType Find(string JudgeCaseTypeName)
         {
+            int JudgeCaseTypeID = -1;
 
-            int JudgeCaseTypeID = -1, CreatedByAdminID = -1;
-
-            if (clsJudgeCaseTypeData.GetJudgeCaseTypeInfoByCaseTypeName(JudgeCaseTypeName, ref JudgeCaseTypeID, ref CreatedByAdminID))
-                return new clsJudgeCaseType(JudgeCaseTypeID, JudgeCaseTypeName, CreatedByAdminID);
+            if (clsJudgeCaseTypeData.GetJudgeCaseTypeInfoByCaseTypeName(JudgeCaseTypeName, ref JudgeCaseTypeID))
+                return new clsJudgeCaseType(JudgeCaseTypeID, JudgeCaseTypeName);
             else
                 return null;
         }
@@ -98,7 +85,7 @@ namespace AADLBusiness.Judger
 
         private bool _AddNew()
         {
-            this.JudgeCaseTypeID = clsJudgeCaseTypeData.Add(this.JudgeCaseTypeName, this.CreatedByAdminID);
+            this.JudgeCaseTypeID = clsJudgeCaseTypeData.Add(this.JudgeCaseTypeName);
 
             return (this.JudgeCaseTypeID.HasValue);
         }

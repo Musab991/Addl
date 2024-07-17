@@ -14,8 +14,7 @@ namespace AADLDataAccess
 {
     public class clsRegulatoryCaseTypeData
     {
-        public static bool GetRegulatoryCaseTypeInfoByCaseTypeID(int RegulatoryCaseTypeID ,ref string RegulatoryCaseTypeName
-            ,ref int CreatedByAdminID)
+        public static bool GetRegulatoryCaseTypeInfoByCaseTypeID(int RegulatoryCaseTypeID ,ref string RegulatoryCaseTypeName)
         {
             bool isFound = false;
 
@@ -41,7 +40,6 @@ namespace AADLDataAccess
                                 isFound = true;
 
                                 RegulatoryCaseTypeName = (string)reader["RegulatoryCaseTypeName"];
-                                CreatedByAdminID = (int)reader["CreatedByAdminID"];
 
                             }
                             else
@@ -71,8 +69,7 @@ namespace AADLDataAccess
 
             return isFound;
         }
-        public static bool GetRegulatoryCaseTypeInfoByCaseTypeName(string RegulatoryCaseTypeName,ref int RegulatoryCaseTypeID
-          , ref int CreatedByAdminID)
+        public static bool GetRegulatoryCaseTypeInfoByCaseTypeName(string RegulatoryCaseTypeName,ref int RegulatoryCaseTypeID)
         {
             bool isFound = false;
 
@@ -98,8 +95,6 @@ namespace AADLDataAccess
                                 isFound = true;
 
                                 RegulatoryCaseTypeID = (int)reader["RegulatoryCaseTypeID"];
-                                CreatedByAdminID = (int)reader["CreatedByAdminID"];
-
                             }
                             else
                             {
@@ -128,8 +123,8 @@ namespace AADLDataAccess
 
             return isFound;
         }
-        public static int?  Add(string name, int createdByAdminID)
-            => clsCaseTypeData.Add(name, createdByAdminID, clsCaseTypeData.enWhichPractitioner.Regulator);
+        public static int?  Add(string name)
+            => clsCaseTypeData.Add(name, clsCaseTypeData.enWhichPractitioner.Regulator);
         public static bool Update(int ID, string name)
             => clsCaseTypeData.Update(ID, name, clsCaseTypeData.enWhichPractitioner.Regulator);
         public static bool Delete(int ID)

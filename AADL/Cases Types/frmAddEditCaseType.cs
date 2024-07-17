@@ -76,7 +76,6 @@ namespace AADL.Cases
             if (_mode == enMode.Add)
             {
                 _caseType = new clsCaseType(_whichPractitioner);
-                _caseType.CreatedByAdminID = clsGlobal.CurrentAdmin.AdminID ?? 2;
             }
 
             _caseType.Name = txtCaseName.Text.Trim();
