@@ -156,7 +156,7 @@ namespace AADL.Regulators
             try
             {
 
-                DataTable RegulatoryCasesTypeDataTable = clsRegulatoryCaseType.GetAllRegulatoryCaseTypes();
+                DataTable RegulatoryCasesTypeDataTable = clsRegulatoryCaseType.All();
                 if (RegulatoryCasesTypeDataTable.Rows.Count > 0)
                 {
 
@@ -188,7 +188,7 @@ namespace AADL.Regulators
             try
             {
 
-                DataTable ShariaCasesTypeDataTable = clsShariaCaseType.GetAllShariaCaseTypes();
+                DataTable ShariaCasesTypeDataTable = clsShariaCaseType.All();
                 if (ShariaCasesTypeDataTable.Rows.Count > 0)
                 {
 
@@ -220,7 +220,7 @@ namespace AADL.Regulators
             try
             {
 
-                DataTable JudgerCasesTypeDataTable = clsJudgeCaseType.GetAllJudgeCaseTypes();
+                DataTable JudgerCasesTypeDataTable = clsJudgeCaseType.All();
                 if (JudgerCasesTypeDataTable.Rows.Count > 0)
                 {
 

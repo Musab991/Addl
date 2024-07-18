@@ -186,6 +186,7 @@
     <Compile Include="clsCountry.cs" />
     <Compile Include="clsPerson.cs" />
     <Compile Include="Lists\WhiteList\clsWhiteList.cs" />
+    <Compile Include="ManagePractitionerCasesTypes.cs" />
     <Compile Include="Regulatory\clsRegulator.cs" />
     <Compile Include="Lists\Black\clsBlackListReason.cs" />
     <Compile Include="Regulatory\clsRegulatoryCaseType.cs" />

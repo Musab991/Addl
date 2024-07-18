@@ -1,4 +1,5 @@
 ﻿using AADL_DataAccess;
+using AADL_DataAccess.HelperClasses;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AADLDataAccess
 {
@@ -38,7 +40,6 @@ namespace AADLDataAccess
                                 // The record was found
                                 isFound = true;
 
-                                RegulatoryCaseTypeID = (int)reader["RegulatoryCaseTypeID"];
                                 RegulatoryCaseTypeName = (string)reader["RegulatoryCaseTypeName"];
                                 CreatedByAdminID = (int)reader["CreatedByAdminID"];
 
@@ -97,7 +98,6 @@ namespace AADLDataAccess
                                 isFound = true;
 
                                 RegulatoryCaseTypeID = (int)reader["RegulatoryCaseTypeID"];
-                                RegulatoryCaseTypeName = (string)reader["RegulatoryCaseTypeName"];
                                 CreatedByAdminID = (int)reader["CreatedByAdminID"];
 
                             }
@@ -128,155 +128,17 @@ namespace AADLDataAccess
 
             return isFound;
         }
-        public static int  AddNewRegulatoryCaseType(string RegulatoryCaseTypeName, int CreatedByAdminID)
-        {
-            int NewRegulatoryCaseTypeID = -1;
-          
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
+        public static int?  Add(string name, int createdByAdminID)
+            => clsCaseTypeData.Add(name, createdByAdminID, clsCaseTypeData.enWhichPractitioner.Regulator);
+        public static bool Update(int ID, string name)
+            => clsCaseTypeData.Update(ID, name, clsCaseTypeData.enWhichPractitioner.Regulator);
+        public static bool Delete(int ID)
+            => clsCaseTypeData.Delete(ID, clsCaseTypeData.enWhichPractitioner.Regulator);
+        public static DataTable All()
+            => clsDataAccessHelper.All("SP_GetAllRegulatoryCasesTypes");
 
-                using (SqlCommand command = new SqlCommand("SP_AddNewRegulatoryCaseType", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@RegulatoryCaseTypeName", RegulatoryCaseTypeName);
-                    command.Parameters.AddWithValue("@CreatedByAdminID", CreatedByAdminID);
-                    SqlParameter outputIdParam = new SqlParameter("@NewRegulatoryCaseTypeID", SqlDbType.Int)
-                    {
-                        Direction = ParameterDirection.Output
-                    };
-                    command.Parameters.Add(outputIdParam);
-                    try
-                    {
-                        connection.Open();
-
-                        NewRegulatoryCaseTypeID = (int)command.Parameters["@NewRegulatoryCaseTypeID"].Value;
-
-
-                    }
-                    catch (Exception ex)
-                    {
-                        clsDataAccessSettings.WriteEventToLogFile("Exception Message From clsRegulatoryCaseTypeData class DataAccess add new Case type method:\t" + ex.Message,
-                            EventLogEntryType.Error);
-                        throw new Exception(ex.Message);
-                    }
-
-                }
-
-                return NewRegulatoryCaseTypeID;
-
-            }
-
-        }
-        public static bool UpdateRegulatoryCaseType(int? RegulatoryCaseTypeID,  string RegulatoryCaseTypeName, int CreatedByAdminID)
-        {
-            int rowsAffected = 0;
-
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-
-                using (SqlCommand command = new SqlCommand("SP_UpdateRegulatoryCaseType", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    command.Parameters.AddWithValue("@RegulatoryCaseTypeName", RegulatoryCaseTypeName);
-                    command.Parameters.AddWithValue("@CreatedByAdminID", CreatedByAdminID);
-                    command.Parameters.AddWithValue("@RegulatoryCaseTypeID", RegulatoryCaseTypeID);
-
-                    try
-                    {
-                        connection.Open();
-                        rowsAffected = command.ExecuteNonQuery();
-
-                    }
-                    catch (Exception ex)
-                    {
-                        clsDataAccessSettings.WriteEventToLogFile("Exception Message From RegulatoryCaseType dataAccess  class update method :\t" + ex.Message,
-                            EventLogEntryType.Error);
-                        throw new Exception(ex.Message);
-                    }
-
-                }
-
-            }
-           
-            return rowsAffected > 0;
-
-        }
-        public static bool DeleteRegulatoryCaseType(int? RegulatoryCaseTypeID)
-        {
-
-            int rowsAffected = 0;
-
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-
-                using (SqlCommand command = new SqlCommand("SP_DeleteRegulatoryCaseType", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@RegulatoryCaseTypeID", RegulatoryCaseTypeID);
-
-                    try
-                    {
-                        connection.Open();
-
-                        rowsAffected = command.ExecuteNonQuery();
-
-                    }
-                    catch (SqlException ex)
-                    {
-                        clsDataAccessSettings.WriteEventToLogFile("Exception Message From RegulatoryCaseType DataAccess  class delete method :\t" + ex.Message,
-                            EventLogEntryType.Error);
-                        throw new Exception(ex.Message);
-
-                    }
-                }
-            }
-
-
-            return (rowsAffected > 0);
-
-        }
-        public  static DataTable GetAllRegulatoryCaseTypes()
-        {
-
-            DataTable dt = new DataTable();
-            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
-            {
-
-                using (SqlCommand command = new SqlCommand("SP_GetAllRegulatoryCaseTypes", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    try
-                    {
-                        connection.Open();
-
-                        using (SqlDataReader reader =  command.ExecuteReader())
-                        {
-
-                            if (reader.HasRows)
-                            {
-                                dt.Load(reader);
-                            }
-                        }
-                    }
-
-                    catch (SqlException ex)
-                    {
-                        clsDataAccessSettings.WriteEventToLogFile("Exception comes from data access layer of RegulatoryCaseTypes class , where data grid view load all RegulatoryCaseTypes method dropped:\n"
-                            + ex.Message, EventLogEntryType.Error);
-                        Console.WriteLine("Error: " + ex.Message);
-                        throw new Exception(ex.Message + "\n" + ex.StackTrace);
-                    }
-                }
-
-            }
-
-            return dt;
-
-        }
+        public static bool Exists(string name)
+            => clsCaseTypeData.Exists(name, clsCaseTypeData.enWhichPractitioner.Regulator);
 
     }
-
 }
