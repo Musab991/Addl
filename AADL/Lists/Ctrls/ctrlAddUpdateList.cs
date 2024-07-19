@@ -19,6 +19,15 @@ namespace AADL.Lists
 {
     public partial class ctrlAddUpdateList : UserControl
     {
+        public class CustomEventArgs : EventArgs
+        {
+            public CustomEventArgs(int practitionerType)
+            {
+                this.practitionerType = practitionerType;
+            }
+
+            public int practitionerType { get; set; }
+        }
         private enum problemTypes { LoadingInfo }
 
         private int _BlackListID = -1;
@@ -31,27 +40,57 @@ namespace AADL.Lists
 
         private int _PractitionerID = -1;
 
-
         // Define a delegate for the event
-        public delegate void CustomEventHandler(object sender, EventArgs e);
+        public delegate void CustomEventHandler(object sender, CustomEventArgs e);
 
         // Declare the event using the delegate
         public event CustomEventHandler evCustomEventSaveUpdate;
         // I might create sub-enum for specilized lists
 
         // Method to trigger the event
-        protected void OnCustomEvent()
+        protected void OnCustomEvent(  CustomEventArgs e)
         {
-            evCustomEventSaveUpdate?.Invoke(this, EventArgs.Empty);
+            evCustomEventSaveUpdate?.Invoke(this, e);
         }
         public enum enCreationMode { BlackList, RegulatoryWhiteList, RegulatoryClosedList,
             ShariaWhiteList, ShariaClosedList, JudgerWhiteList, JudgerClosedList, ExpertWhiteList, ExpertClosedList };
         public enum enMode { AddNew, Update };
         private enCreationMode _CreationMode = enCreationMode.BlackList;
         private enMode _Mode = enMode.AddNew;
+
         public ctrlAddUpdateList()
         {
             InitializeComponent();
+        }
+        private int _GetPractitionerTypeIDBasedOnCreationMode()
+        {
+            if (_CreationMode == enCreationMode.BlackList)
+            {
+                return 0;
+            }
+            else if (_CreationMode == enCreationMode.RegulatoryWhiteList ||
+                _CreationMode == enCreationMode.RegulatoryClosedList) {
+                return 1;
+            }
+            else if (_CreationMode==enCreationMode.ShariaWhiteList||
+                _CreationMode == enCreationMode.ShariaClosedList)
+            {
+                return 2;
+            }
+            else if (_CreationMode == enCreationMode.JudgerWhiteList ||
+                  _CreationMode == enCreationMode.JudgerClosedList)
+            {
+                return 3;
+            }
+            else if (_CreationMode == enCreationMode.ExpertWhiteList ||
+                  _CreationMode == enCreationMode.ExpertClosedList)
+            {
+                return 4;
+            }
+            else
+            {
+                return -1;
+            }
         }
         private bool _LoadBlackListReasonsInfo()
         {
@@ -850,7 +889,7 @@ namespace AADL.Lists
                 MessageBox.Show("حفظ البيانات بنجاح.", "حفظ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lbListlD.Text = _BlackList.BlackListID.ToString();
                 btnDelete.Visible = true;
-                OnCustomEvent();
+                OnCustomEvent(new CustomEventArgs(_GetPractitionerTypeIDBasedOnCreationMode()));
 
             }
 
@@ -892,7 +931,7 @@ namespace AADL.Lists
                 MessageBox.Show("حفظ البيانات بنجاح.", "حفظ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lbListlD.Text = _WhiteList.WhiteListID.ToString();
                 btnDelete.Visible = true;
-                OnCustomEvent();
+                OnCustomEvent(new CustomEventArgs(_GetPractitionerTypeIDBasedOnCreationMode()));
             }
             else
             {
@@ -935,7 +974,7 @@ namespace AADL.Lists
                 MessageBox.Show("حفظ البيانات بنجاح.", "حفظ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lbListlD.Text = _ClosedList.ClosedListID.ToString();
                 btnDelete.Visible = true;
-                OnCustomEvent();
+                OnCustomEvent(new CustomEventArgs(_GetPractitionerTypeIDBasedOnCreationMode()));
             }
             else
             {
@@ -1132,7 +1171,7 @@ namespace AADL.Lists
                     if (enCreationMode.BlackList == _CreationMode && clsBlackList.DeleteList(_BlackListID))
                     {
                         LoadInfo(_PractitionerID, _CreationMode);
-                        OnCustomEvent();
+                        OnCustomEvent(new CustomEventArgs(_GetPractitionerTypeIDBasedOnCreationMode()));
                         IsDeleted = true;
 
                     }
@@ -1165,7 +1204,7 @@ namespace AADL.Lists
                 {
                     MessageBox.Show(ResponseMessageAppearForUser, "Succeed", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadInfo(_PractitionerID, _CreationMode);
-                    OnCustomEvent();
+                    OnCustomEvent(new CustomEventArgs(_GetPractitionerTypeIDBasedOnCreationMode()));
                 }
                 else 
                 {

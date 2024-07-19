@@ -384,12 +384,15 @@ namespace AADLDataAccess.Judger
 
             return EffectedRows > 0;
         }
+        public static bool Deactivate(int JudgerID, int LastEditByUserID)
+           => clsDataAccessHelper.Deactivate("SP_DeactivateJudger", "JudgerID", JudgerID, "LastEditByUserID", LastEditByUserID);
+        public static bool Activate(int JudgerID, int LastEditByUserID)
+            => clsDataAccessHelper.Activate("SP_ActivateJudger", "JudgerID", JudgerID, "LastEditByUserID", LastEditByUserID);
 
-        public static bool Deactivate(int judgerID)
-            => clsDataAccessHelper.Deactivate("SP_DeactivateJudger", "JudgerID", judgerID);
+        public static int Count(bool IsDraft = false) => clsDataAccessHelper.Count("SP_GetTotalJudgersCount", IsDraft);
 
-        public static bool Activate(int judgerID)
-            => clsDataAccessHelper.Activate("SP_ActivateJudger", "JudgerID", judgerID);
+        public static DataTable GetJudgersPerPage(ushort pageNumber, uint rowsPerPage, bool IsDraft = false) => 
+            clsDataAccessHelper.AllInPages(pageNumber, rowsPerPage, "SP_GetJudgersPerPage", IsDraft);
 
         public static bool DeletePermanently(int? judgerID)
             => clsDataAccessHelper.Delete("SP_DeleteJudgerPermanently", "JudgerID", judgerID);
@@ -436,11 +439,7 @@ namespace AADLDataAccess.Judger
 
         public static bool IsExistsInClosedListByPractitionerIDAndPractitionerTypeID(int PractitionerID, int PractitionerTypeID)
         => clsDataAccessHelper.Exists("SP_IsPractitionerInClosedList", "PractitionerID", PractitionerID, "PractitionerTypeID", PractitionerTypeID);
-        public static int Count()
-            => clsDataAccessHelper.Count("SP_GetTotalJudgersCount");
 
-        public static DataTable GetJudgersPerPage(ushort pageNumber, uint rowsPerPage)
-            => clsDataAccessHelper.AllInPages(pageNumber, rowsPerPage, "SP_GetJudgersPerPage");
 
         public static bool IsJudgerInWhiteList(int judgerID)
             => throw new NotImplementedException();

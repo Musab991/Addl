@@ -272,7 +272,7 @@ namespace AADL.Sharia
 
             if (MessageBox.Show($"هل انت متاكد انك تريد تريد تفعيل الحساب رقم {shariaID} ؟", "تاكيد التفعيل", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (clsSharia.Activate(shariaID))
+                if (clsSharia.Activate(shariaID,(int)clsGlobal.CurrentUser.UserID))
                 {
                     MessageBox.Show($"تم تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -290,7 +290,7 @@ namespace AADL.Sharia
 
             if (MessageBox.Show($"هل انت متاكد انك تريد تريد الغاء تفعيل الحساب رقم {ShariaID} ؟", "تاكيد الإلغاء", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (clsSharia.Deactivate(ShariaID))
+                if (clsSharia.Deactivate(ShariaID, (int)clsGlobal.CurrentUser.UserID))
                 {
                     MessageBox.Show($"تم الإلغاء تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -162,7 +162,7 @@ namespace AADLDataAccess.Sharia
                                 {
                                     // Process the data from Sharias CasesPractice table
                                     int regulatoryCaseTypeId = reader.GetInt32(reader.GetOrdinal("ShariaCaseTypeID"));
-                                    string regulatoryCaseTypeName = reader.GetString(reader.GetOrdinal("RegulatorCaseTypeName"));
+                                    string regulatoryCaseTypeName = reader.GetString(reader.GetOrdinal("ShariaCaseTypeName"));
 
                                     CasesShariaPracticesIDNameDictionary.Add(regulatoryCaseTypeId, regulatoryCaseTypeName);
                                 }
@@ -535,12 +535,15 @@ namespace AADLDataAccess.Sharia
         public static bool DeletePermanently(int? shariaID)
          => clsDataAccessHelper.Delete("SP_DeleteShariaPermanently", "ShariaID", shariaID);
 
-        public static bool Deactivate(int shariaID)
-            => clsDataAccessHelper.Deactivate("SP_DeactivateSharia", "ShariaID", shariaID);
+        public static bool Deactivate(int ShariaID, int LastEditByUserID)
+           => clsDataAccessHelper.Deactivate("SP_DeactivateSharia", "ShariaID", ShariaID, "LastEditByUserID", LastEditByUserID);
+        public static bool Activate(int ShariaID, int LastEditByUserID)
+            => clsDataAccessHelper.Activate("SP_ActivateSharia", "ShariaID", ShariaID, "LastEditByUserID", LastEditByUserID);
 
-        public static bool Activate(int shariaID)
-            => clsDataAccessHelper.Activate("SP_ActivateSharia", "ShariaID", shariaID);
+        public static int Count(bool IsDraft = false) => clsDataAccessHelper.Count("SP_GetTotalShariasCount", IsDraft);
 
+        public static DataTable GetShariasPerPage(ushort pageNumber, uint rowsPerPage, bool IsDraft = false) => 
+            clsDataAccessHelper.AllInPages(pageNumber, rowsPerPage, "SP_GetShariasPerPage", IsDraft);
         public static bool IsExistsInWhiteListByPractitionerIDAndPractitionerTypeID(int? PractitionerID, int? PractitionerTypeID)
           => clsDataAccessHelper.Exists("SP_IsPractitionerInWhiteList", "PractitionerID", PractitionerID, "PractitionerTypeID", PractitionerTypeID);
 
@@ -560,11 +563,7 @@ namespace AADLDataAccess.Sharia
         public static DataTable All()
             => clsDataAccessHelper.All("SP_GetAllSharias");
 
-        public static int Count()
-            => clsDataAccessHelper.Count("SP_GetTotalShariasCount");
 
-        public static DataTable GetShariasPerPage(ushort pageNumber, uint rowsPerPage)
-            => clsDataAccessHelper.AllInPages(pageNumber, rowsPerPage, "SP_GetShariasPerPage");
 
 
     }

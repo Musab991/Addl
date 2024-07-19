@@ -2,6 +2,7 @@
 using AADLBusiness.Lists.Closed;
 using AADLBusiness.Lists.WhiteList;
 using AADLDataAccess.Judger;
+using AADLDataAccess.Judger;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,7 +27,7 @@ namespace AADLBusiness.Judger
         }
 
         private clsJudger(int JudgerID, int PractitionerID, int PersonID, bool IsLawyer, int SubscriptionTypeID, int SubscriptionWayID, DateTime IssueDate,
-            DateTime? LastEditDate, int? LastEditByUserID, int CreatedByUserID, bool IsActive, Dictionary<int, string> ShariaCasesPracticeIDNameDictionary)
+            DateTime? LastEditDate, int? LastEditByUserID, int CreatedByUserID, bool IsActive, Dictionary<int, string> JudgerCasesPracticeIDNameDictionary)
         {
             try
             {
@@ -46,7 +47,7 @@ namespace AADLBusiness.Judger
                 this.CreatedByUserID = CreatedByUserID;
                 this.UserInfo = clsUser.FindByUserID(this.CreatedByUserID);
                 this.IsActive = IsActive;
-                this._JudgeCasesPracticeIDNameDictionary = ShariaCasesPracticeIDNameDictionary;
+                this._JudgeCasesPracticeIDNameDictionary = JudgerCasesPracticeIDNameDictionary;
 
                 this.Mode = enMode.Update;
             }
@@ -164,20 +165,22 @@ namespace AADLBusiness.Judger
             return clsClosedList.IsPractitionerInClosedList(this.PractitionerID, clsPractitioner.enPractitionerType.Judger);
         }
 
-        public static bool Deactivate(int JudgerID)
-            => clsJudgerData.Deactivate(JudgerID);
-
-        public static bool Activate(int JudgerID)
-            => clsJudgerData.Activate(JudgerID);
-
         public static bool DeletePermanently(int JudgerID)
             => clsJudgerData.DeletePermanently(JudgerID);
-
+        public static bool Deactivate(int JudgerID, int LastEditByUserID)
+             => clsJudgerData.Deactivate(JudgerID, LastEditByUserID);
+        public static bool Activate(int JudgerID, int LastEditByUserID)
+            => clsJudgerData.Activate(JudgerID, LastEditByUserID);
         public static int Count()
             => clsJudgerData.Count();
+        public static int CountDraft()
+           => clsJudgerData.Count(true);
 
         public static DataTable GetJudgersPerPage(ushort pageNumber, uint rowsPerPage)
             => clsJudgerData.GetJudgersPerPage(pageNumber, rowsPerPage);
+
+        public static DataTable GetJudgersPerPageDraft(ushort pageNumber, uint rowsPerPage)
+         => clsJudgerData.GetJudgersPerPage(pageNumber, rowsPerPage, true);
 
         public override bool Save()
         {
@@ -212,5 +215,7 @@ namespace AADLBusiness.Judger
         {
             return clsJudgerData.UpdateJudger(JudgerID, PractitionerID, SubscriptionTypeID, SubscriptionWayID, IsActive, LastEditByUserID, JudgeCasesPracticeIDNameDictionary);
         }
+   
     }
 }
+

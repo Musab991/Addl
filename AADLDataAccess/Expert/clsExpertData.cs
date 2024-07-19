@@ -376,12 +376,15 @@ namespace AADLDataAccess.Expert
         public static bool DeletePermanently(int? expertID)
             => clsDataAccessHelper.Delete("SP_DeleteExpertPermanently", "ExpertID", expertID);
 
-        public static bool Deactivate(int expertID)
-            => clsDataAccessHelper.Deactivate("SP_DeactivateExpert", "ExpertID", expertID);
+        public static bool Deactivate(int ExpertID, int LastEditByUserID)
+             => clsDataAccessHelper.Deactivate("SP_DeactivateExpert", "ExpertID", ExpertID, "LastEditByUserID", LastEditByUserID);
+        public static bool Activate(int ExpertID, int LastEditByUserID)
+            => clsDataAccessHelper.Activate("SP_ActivateExpert", "ExpertID", ExpertID, "LastEditByUserID", LastEditByUserID);
 
-        public static bool Activate(int expertID)
-            => clsDataAccessHelper.Activate("SP_ActivateExpert", "ExpertID", expertID);
+        public static int Count(bool IsDraft = false) => clsDataAccessHelper.Count("SP_GetTotalExpertsCount", IsDraft);
 
+        public static DataTable GetExpertsPerPage(ushort pageNumber, uint rowsPerPage, bool IsDraft = false) =>
+            clsDataAccessHelper.AllInPages(pageNumber, rowsPerPage, "SP_GetExpertsPerPage", IsDraft);
         public static bool IsExistsInWhiteListByPractitionerIDAndPractitionerTypeID(int? PractitionerID,int?PractitionerTypeID)
           => clsDataAccessHelper.Exists("SP_IsPractitionerInWhiteList", "PractitionerID", PractitionerID, "PractitionerTypeID", PractitionerTypeID);
 
@@ -399,11 +402,7 @@ namespace AADLDataAccess.Expert
         public static DataTable All()
             => clsDataAccessHelper.All("SP_GetAllExperts");
 
-        public static int Count()
-            => clsDataAccessHelper.Count("SP_GetTotalExpertsCount");
 
-        public static DataTable GetExpertsPerPage(ushort pageNumber, uint rowsPerPage)
-            => clsDataAccessHelper.AllInPages(pageNumber, rowsPerPage, "SP_GetExpertsPerPage");
 
         public static bool IsExpertInWhiteList(int expertID)
             => throw new NotImplementedException();

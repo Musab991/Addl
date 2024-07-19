@@ -71,10 +71,10 @@ namespace AADL.Judgers
 
         private void _HandleNumberOfPages()
         {
-            uint totalJudgersCount = (uint)clsJudger.Count();
+            uint totalRegulatorsCount = (uint)clsJudger.Count();
 
-            // Calculate the number of pages depending on "totalJudgersCount"
-            uint numberOfPages = totalJudgersCount > 0 ? (uint)Math.Ceiling((double)totalJudgersCount / clsUtil.RowsPerPage) : 0;
+            // Calculate the number of pages depending on "totalRegulatorsCount"
+            uint numberOfPages = totalRegulatorsCount > 0 ? (uint)Math.Ceiling((double)totalRegulatorsCount / clsUtil.RowsPerPage) : 0;
 
             _totalNumberOfPages = numberOfPages;
 
@@ -279,7 +279,7 @@ namespace AADL.Judgers
 
             if (MessageBox.Show($"هل انت متاكد انك تريد تريد الغاء تفعيل الحساب رقم {judgerID} ؟", "تاكيد الإلغاء", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (clsJudger.Deactivate(judgerID))
+                if (clsJudger.Deactivate(judgerID, (int)clsGlobal.CurrentUser.UserID))
                 {
                     MessageBox.Show($"تم الإلغاء تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -367,7 +367,7 @@ namespace AADL.Judgers
 
             if (MessageBox.Show($"هل انت متاكد انك تريد تريد تفعيل الحساب رقم {judgerID} ؟", "تاكيد التفعيل", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (clsJudger.Activate(judgerID))
+                if (clsJudger.Activate(judgerID, (int)clsGlobal.CurrentUser.UserID))
                 {
                     MessageBox.Show($"تم تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

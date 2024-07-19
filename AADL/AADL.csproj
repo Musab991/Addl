@@ -242,6 +242,12 @@
     <Compile Include="Experts\frmExpertCard.Designer.cs">
       <DependentUpon>frmExpertCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Experts\frmExpertDraft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Experts\frmExpertDraft.Designer.cs">
+      <DependentUpon>frmExpertDraft.cs</DependentUpon>
+    </Compile>
     <Compile Include="Experts\frmExpertsList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +272,12 @@
     </Compile>
     <Compile Include="Judgers\Controls\ctrJudgerCard.Designer.cs">
       <DependentUpon>ctrJudgerCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Judgers\frmJuderDraft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Judgers\frmJuderDraft.Designer.cs">
+      <DependentUpon>frmJuderDraft.cs</DependentUpon>
     </Compile>
     <Compile Include="Judgers\frmJudgerCard.cs">
       <SubType>Form</SubType>
@@ -372,6 +384,12 @@
     <Compile Include="Pracititoners\frmAddUpdatePractitioner.Designer.cs">
       <DependentUpon>frmAddUpdatePractitioner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Regulators\frmRegulatorDraft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Regulators\frmRegulatorDraft.Designer.cs">
+      <DependentUpon>frmRegulatorDraft.cs</DependentUpon>
+    </Compile>
     <Compile Include="Regulators\frmRegulatorInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,6 +419,12 @@
     </Compile>
     <Compile Include="Sharia\frmShariaCard.Designer.cs">
       <DependentUpon>frmShariaCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sharia\frmShariaDraft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sharia\frmShariaDraft.Designer.cs">
+      <DependentUpon>frmShariaDraft.cs</DependentUpon>
     </Compile>
     <Compile Include="Sharia\frmShariaList.cs">
       <SubType>Form</SubType>
@@ -469,6 +493,9 @@
     <EmbeddedResource Include="Experts\frmExpertCard.resx">
       <DependentUpon>frmExpertCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Experts\frmExpertDraft.resx">
+      <DependentUpon>frmExpertDraft.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Experts\frmExpertsList.resx">
       <DependentUpon>frmExpertsList.cs</DependentUpon>
     </EmbeddedResource>
@@ -480,6 +507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Judgers\Controls\ctrJudgerCard.resx">
       <DependentUpon>ctrJudgerCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Judgers\frmJuderDraft.resx">
+      <DependentUpon>frmJuderDraft.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Judgers\frmJudgerCard.resx">
       <DependentUpon>frmJudgerCard.cs</DependentUpon>
@@ -541,6 +571,9 @@
     <EmbeddedResource Include="Pracititoners\frmAddUpdatePractitioner.resx">
       <DependentUpon>frmAddUpdatePractitioner.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Regulators\frmRegulatorDraft.resx">
+      <DependentUpon>frmRegulatorDraft.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Regulators\frmRegulatorInfo.resx">
       <DependentUpon>frmRegulatorInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -560,6 +593,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sharia\frmShariaCard.resx">
       <DependentUpon>frmShariaCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sharia\frmShariaDraft.resx">
+      <DependentUpon>frmShariaDraft.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sharia\frmShariaList.resx">
       <DependentUpon>frmShariaList.cs</DependentUpon>

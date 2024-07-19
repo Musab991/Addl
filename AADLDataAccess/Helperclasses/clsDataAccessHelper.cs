@@ -106,6 +106,33 @@ namespace AADL_DataAccess.HelperClasses
 
             return rowAffected > 0;
         }
+        public static bool Activate<T>(string storedProcedureName, string parameterName, T value)
+        {
+            int rowAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue($"@{parameterName}", (object)value ?? DBNull.Value);
+
+                        rowAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsDataAccessHelper.HandleException(ex);
+            }
+
+            return rowAffected > 0;
+        }
 
         public static bool Deactivate<T1, T2>(string storedProcedureName, string parameterName1, T1 value1, string parameterName2, T2 value2)
         {
@@ -144,7 +171,7 @@ namespace AADL_DataAccess.HelperClasses
             return rowAffected > 0;
         }
 
-        public static bool Activate<T>(string storedProcedureName, string parameterName, T value)
+        public static bool Activate<T1, T2>(string storedProcedureName, string parameterName1, T1 value1, string parameterName2, T2 value2)
         {
             int rowAffected = 0;
 
@@ -158,7 +185,8 @@ namespace AADL_DataAccess.HelperClasses
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.AddWithValue($"@{parameterName}", (object)value ?? DBNull.Value);
+                        command.Parameters.AddWithValue($"@{parameterName1}", (object)value1 ?? DBNull.Value);
+                        command.Parameters.AddWithValue($"@{parameterName2}", (object)value2 ?? DBNull.Value);
 
                         rowAffected = command.ExecuteNonQuery();
                     }
@@ -247,7 +275,7 @@ namespace AADL_DataAccess.HelperClasses
             return isFound;
         }
 
-        public static int Count(string storedProcedureName)
+        public static int Count(string storedProcedureName,bool IsDraft=false)
         {
             int Count = 0;
 
@@ -260,7 +288,11 @@ namespace AADL_DataAccess.HelperClasses
                     using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
+                        if (IsDraft)
+                        {
+                            command.Parameters.AddWithValue("@IsDraft", (object)IsDraft ?? DBNull.Value);
 
+                        }
                         object result = command.ExecuteScalar();
 
                         if (result != null && int.TryParse(result.ToString(), out int Value))
@@ -424,7 +456,7 @@ namespace AADL_DataAccess.HelperClasses
             return dt;
         }
 
-        public static DataTable AllInPages(ushort pageNumber, uint rowsPerPage, string storedProcedureName)
+        public static DataTable AllInPages(ushort pageNumber, uint rowsPerPage, string storedProcedureName,bool IsDraft=false)
         {
             DataTable dt = new DataTable();
 
@@ -442,6 +474,11 @@ namespace AADL_DataAccess.HelperClasses
                         command.Parameters.AddWithValue("@PageNumber", (int)pageNumber);
                         command.Parameters.AddWithValue("@RowsPerPage", (int)rowsPerPage);
 
+                        if (IsDraft == true)
+                        {
+                            command.Parameters.AddWithValue("@IsDraft", IsDraft);
+
+                        }
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.HasRows)
