@@ -130,7 +130,8 @@ namespace AADL.Cases_Types
 
         private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            if (cbFilterBy.Text == "الرقم")
+                clsUtil.IsNumber(e);
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)

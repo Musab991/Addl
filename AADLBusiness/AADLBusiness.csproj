@@ -175,6 +175,7 @@
     <Compile Include="clsPractitioner.cs" />
     <Compile Include="clsPractitionerServices.cs" />
     <Compile Include="clsSubscriptionWay.cs" />
+    <Compile Include="CompanyAim.cs" />
     <Compile Include="Expert\clsExpert.cs" />
     <Compile Include="Expert\clsExpertCaseType.cs" />
     <Compile Include="Jugder\clsJudgeCaseType.cs" />

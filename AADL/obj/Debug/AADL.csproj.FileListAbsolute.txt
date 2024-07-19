@@ -182,5 +182,7 @@ P:\GitHub\Addl\AADL\obj\Debug\AADL.csproj.Up2Date
 P:\GitHub\Addl\AADL\obj\Debug\AADL.exe
 P:\GitHub\Addl\AADL\obj\Debug\AADL.pdb
 P:\GitHub\Addl\AADL\obj\Debug\AADL.Cases_Types.frmCasesTypesList.resources
-P:\GitHub\Addl\AADL\obj\Debug\AADL.csproj.Fody.CopyLocal.cache
-P:\GitHub\Addl\AADL\obj\Debug\AADL.csproj.Fody.RuntimeCopyLocal.cache
+P:\GitHub\Addl\AADL\obj\Debug\AADL.Companies.CompanyAims.frmAddEditCompanyAim.resources
+P:\GitHub\Addl\AADL\obj\Debug\AADL.Companies.CompanyAims.frmCompaniesAimsList.resources
+P:\GitHub\Addl\AADL\bin\Debug\MethodTimer.dll
+P:\GitHub\Addl\AADL\bin\Debug\MethodTimer.xml

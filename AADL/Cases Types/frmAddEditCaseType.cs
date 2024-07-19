@@ -71,7 +71,7 @@ namespace AADL.Cases
             txtCaseName.Focus();
         }
 
-        private void _FillCaseTypeOblect()
+        private void _FillCaseTypeObject()
         {
             if (_mode == enMode.Add)
             {
@@ -119,7 +119,7 @@ namespace AADL.Cases
 
             if (MessageBox.Show($"هل انت متاكد انك تريد {_title}؟", "تاكيد العملية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _FillCaseTypeOblect();
+                _FillCaseTypeObject();
 
                 if(_mode == enMode.Add)
                 {

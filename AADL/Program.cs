@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using BenchmarkDotNet.Running;
-using AADL.People;
-using AADL.Users;
-using AADL.Regulators;
-using AADL.Lists;
-using AADL.Judgers;
-using static AADL.Judgers.Controls.ctrJudgerCard;
-using AADL.Experts;
+using AADL.Companies.CompanyAims;
 namespace AADL
 {
     internal static class Program
@@ -24,10 +13,7 @@ namespace AADL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
-            Console.WriteLine(connectionString);
-            Application.Run(new frmLaunch());
-
+            Application.Run(new frmCompaniesAimsList());
         }
     }
 }

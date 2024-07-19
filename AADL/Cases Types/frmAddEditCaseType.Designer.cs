@@ -112,7 +112,7 @@
             this.txtCaseName.Location = new System.Drawing.Point(207, 184);
             this.txtCaseName.Multiline = true;
             this.txtCaseName.Name = "txtCaseName";
-            this.txtCaseName.Size = new System.Drawing.Size(437, 30);
+            this.txtCaseName.Size = new System.Drawing.Size(437, 72);
             this.txtCaseName.TabIndex = 211;
             // 
             // btnClose
