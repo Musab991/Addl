@@ -246,17 +246,21 @@ namespace AADLBusiness
   
         public static bool Deactivate(int RegulatorID,int LastEditByUserID)
                       => clsRegulatorData.Deactivate(RegulatorID,LastEditByUserID);
-        public static bool Activate(int RegulatorID)
-            => clsRegulatorData.Activate(RegulatorID) ;
+        public static bool Activate(int RegulatorID, int LastEditByUserID)
+            => clsRegulatorData.Activate(RegulatorID, LastEditByUserID) ;
 
         public static bool DeletePermanently(int RegulatorID)
             => clsRegulatorData.DeletePermanently(RegulatorID);
 
         public static int Count()
             => clsRegulatorData.Count();
+        public static int CountDraft()
+        => clsRegulatorData.Count(true);
 
         public static DataTable GetRegulatorsPerPage(ushort pageNumber, uint rowsPerPage)
             => clsRegulatorData.GetRegulatorsPerPage(pageNumber, rowsPerPage);
+        public static DataTable GetRegulatorsPerPageDraft(ushort pageNumber, uint rowsPerPage)
+           => clsRegulatorData.GetRegulatorsPerPage(pageNumber, rowsPerPage,true);
 
         private static bool _ExistsByRegulatorID(int? RegulatorID)
             => clsRegulatorData.ExistsByRegulatorID(RegulatorID);
@@ -315,8 +319,6 @@ namespace AADLBusiness
             return false;
         }
 
-        public static DataTable All()
-            => clsRegulatorData.All();
 
         public bool IsRegulatorInWhiteList()
         {

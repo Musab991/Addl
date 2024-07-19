@@ -1,5 +1,6 @@
 ﻿using AADLBusiness.Lists.Closed;
 using AADLBusiness.Lists.WhiteList;
+using AADLDataAccess;
 using AADLDataAccess.Sharia;
 using System;
 using System.Collections.Generic;
@@ -132,7 +133,7 @@ namespace AADLBusiness.Sharia
             DateTime IssueDate = DateTime.Now;
             DateTime? LastEditDate = null;
 
-            Dictionary<int, string> RegulatorCasesPracticeIDNameDictionary = new Dictionary<int, string>();
+            Dictionary<int, string> ShariaCasesPracticeIDNameDictionary = new Dictionary<int, string>();
 
             switch (FindBasedOn)
             {
@@ -144,7 +145,7 @@ namespace AADLBusiness.Sharia
                         IsFound = clsShariaData.GetShariaInfoByShariaID
                                (ShariaID, ref PersonID, ref ShariaLicenseNumber, ref IsLawyer, ref PractitionerID,
                                ref IssueDate, ref LastEditByUserID, ref SubscriptionTypeID, ref SubscriptionWayID,
-                               ref CreatedByUserID, ref IsActive, ref RegulatorCasesPracticeIDNameDictionary);
+                               ref CreatedByUserID, ref IsActive, ref ShariaCasesPracticeIDNameDictionary);
 
                         break;
 
@@ -158,7 +159,7 @@ namespace AADLBusiness.Sharia
                         IsFound = clsShariaData.GetShariaInfoByPersonID
                                (PersonID, ref ShariaID, ref ShariaLicenseNumber, ref IsLawyer, ref PractitionerID,
                                ref IssueDate, ref LastEditByUserID, ref SubscriptionTypeID, ref SubscriptionTypeID, ref CreatedByUserID, ref IsActive
-                               , ref RegulatorCasesPracticeIDNameDictionary);
+                               , ref ShariaCasesPracticeIDNameDictionary);
 
                         break;
 
@@ -172,7 +173,7 @@ namespace AADLBusiness.Sharia
                         IsFound = clsShariaData.GetShariaInfoByShariaLicenseNumber
                                (ShariaLicenseNumber, ref PersonID, ref ShariaID, ref PractitionerID, ref IsLawyer,
                                ref IssueDate, ref LastEditByUserID, ref SubscriptionTypeID, ref SubscriptionTypeID,
-                               ref CreatedByUserID, ref IsActive, ref RegulatorCasesPracticeIDNameDictionary);
+                               ref CreatedByUserID, ref IsActive, ref ShariaCasesPracticeIDNameDictionary);
 
                         break;
 
@@ -186,7 +187,7 @@ namespace AADLBusiness.Sharia
                         IsFound = clsShariaData.GetShariaInfoByPractitionerID
                                (PractitionerID, ref PersonID, ref ShariaID, ref ShariaLicenseNumber, ref IsLawyer,
                                ref IssueDate, ref LastEditByUserID, ref SubscriptionTypeID, ref SubscriptionWayID, ref CreatedByUserID, ref IsActive
-                               , ref RegulatorCasesPracticeIDNameDictionary);
+                               , ref ShariaCasesPracticeIDNameDictionary);
                         break;
 
                     }
@@ -199,9 +200,9 @@ namespace AADLBusiness.Sharia
                 return new clsSharia(PractitionerID, PersonID, IsLawyer, SubscriptionTypeID, SubscriptionWayID,
                                           ShariaID, ShariaLicenseNumber, IssueDate,
                                           LastEditDate, LastEditByUserID, CreatedByUserID, IsActive,
-                                          RegulatorCasesPracticeIDNameDictionary);
+                                          ShariaCasesPracticeIDNameDictionary);
 
-            throw new ArgumentNullException("No entity for \'Regulator\' was found in database that carry or fit with your input.");
+            throw new ArgumentNullException("No entity for \'Sharia\' was found in database that carry or fit with your input.");
 
         }
         public override bool Save()
@@ -247,21 +248,23 @@ namespace AADLBusiness.Sharia
 
             return false;
         }
-
-        public static bool Deactivate(int ShariaID)
-                  => clsShariaData.Deactivate(ShariaID);
-
-        public static bool Activate(int ShariaID)
-            => clsShariaData.Activate(ShariaID);
-
         public static bool DeletePermanently(int ShariaID)
             => clsShariaData.DeletePermanently(ShariaID);
 
+        public static bool Deactivate(int ShariaID, int LastEditByUserID)
+            => clsShariaData.Deactivate(ShariaID, LastEditByUserID);
+        public static bool Activate(int ShariaID, int LastEditByUserID)
+            => clsShariaData.Activate(ShariaID, LastEditByUserID);
         public static int Count()
             => clsShariaData.Count();
+        public static int CountDraft()
+           => clsShariaData.Count(true);
 
         public static DataTable GetShariasPerPage(ushort pageNumber, uint rowsPerPage)
             => clsShariaData.GetShariasPerPage(pageNumber, rowsPerPage);
+
+        public static DataTable GetShariasPerPageDraft(ushort pageNumber, uint rowsPerPage)
+         => clsShariaData.GetShariasPerPage(pageNumber, rowsPerPage, true);
 
         private static bool _ExistsByShariaID(int? ShariaID)
             => clsShariaData.ExistsByShariaID(ShariaID);

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AADLBusiness;
-using AADLBusiness;
 using Microsoft.Win32;
 
 
@@ -16,9 +15,13 @@ namespace AADL
 {
     internal static  class clsGlobal
     {
+
         // public static clsUser CurrentUser;
         public static clsAdmin CurrentAdmin = clsAdmin.FindByAdminID(2);
         public static clsUser CurrentUser=clsUser.FindByUserID(8);
+
+        // Define a class to hold custom event info
+   
 
         public static bool RememberUsernameAndPassword(string Username, string Password)
         {

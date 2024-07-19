@@ -330,7 +330,7 @@ namespace AADL.Experts
 
             if (MessageBox.Show($"هل انت متاكد انك تريد تريد تفعيل الحساب رقم {expertID} ؟", "تاكيد التفعيل", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (clsExpert.Activate(expertID))
+                if (clsExpert.Activate(expertID, (int)clsGlobal.CurrentUser.UserID))
                 {
                     MessageBox.Show($"تم تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -348,7 +348,7 @@ namespace AADL.Experts
 
             if (MessageBox.Show($"هل انت متاكد انك تريد تريد الغاء تفعيل الحساب رقم {expertID} ؟", "تاكيد الإلغاء", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (clsExpert.Deactivate(expertID))
+                if (clsExpert.Deactivate(expertID,(int)clsGlobal.CurrentUser.UserID))
                 {
                     MessageBox.Show($"تم الإلغاء تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
