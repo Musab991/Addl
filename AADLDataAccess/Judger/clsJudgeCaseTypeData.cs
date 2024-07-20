@@ -10,7 +10,7 @@ namespace AADLDataAccess.Judger
 {
     public static class clsJudgeCaseTypeData
     {
-        public static bool GetJudgeCaseTypeInfoByCaseTypeID(int JudgeCaseTypeID, ref string JudgeCaseTypeName, ref int CreatedByAdminID)
+        public static bool GetJudgeCaseTypeInfoByCaseTypeID(int JudgeCaseTypeID, ref string JudgeCaseTypeName)
         {
             bool isFound = false;
 
@@ -32,7 +32,6 @@ namespace AADLDataAccess.Judger
                             if (reader.Read())
                             {
                                 JudgeCaseTypeName = (string)reader["JudgeCaseTypeName"];
-                                CreatedByAdminID = (int)reader["CreatedByAdminID"];
 
                                 isFound = true;
                             }
@@ -52,7 +51,7 @@ namespace AADLDataAccess.Judger
             return isFound;
         }
 
-        public static bool GetJudgeCaseTypeInfoByCaseTypeName(string JudgeCaseTypeName, ref int JudgeCaseTypeID, ref int CreatedByAdminID)
+        public static bool GetJudgeCaseTypeInfoByCaseTypeName(string JudgeCaseTypeName, ref int JudgeCaseTypeID)
         {
             bool isFound = false;
 
@@ -73,7 +72,6 @@ namespace AADLDataAccess.Judger
                             if (reader.Read())
                             {
                                 JudgeCaseTypeID = (int)reader["JudgeCaseTypeID"];
-                                CreatedByAdminID = (int)reader["CreatedByAdminID"];
 
                                 isFound = true;
                             }
@@ -92,8 +90,8 @@ namespace AADLDataAccess.Judger
             return isFound;
         }
 
-        public static int? Add(string name, int createdByAdminID)
-            => clsCaseTypeData.Add(name, createdByAdminID, clsCaseTypeData.enWhichPractitioner.Judger);
+        public static int? Add(string name)
+            => clsCaseTypeData.Add(name, clsCaseTypeData.enWhichPractitioner.Judger);
 
         public static bool Update(int ID, string name)
             => clsCaseTypeData.Update(ID, name, clsCaseTypeData.enWhichPractitioner.Judger);

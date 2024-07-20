@@ -11,7 +11,7 @@ namespace AADLDataAccess
     {
         public enum enWhichPractitioner : byte { Regulator = 1, Sharia, Judger, Expert }
 
-        public static int? Add(string JudgeCaseTypeName, int CreatedByAmdinID, enWhichPractitioner whichPractitioner)
+        public static int? Add(string JudgeCaseTypeName, enWhichPractitioner whichPractitioner)
         {
             int? newCaseTypeID = null;
 
@@ -25,7 +25,6 @@ namespace AADLDataAccess
 
                         command.Parameters.AddWithValue("@Name", JudgeCaseTypeName);
                         command.Parameters.AddWithValue("@WhichPractitioner", whichPractitioner);
-                        command.Parameters.AddWithValue("@CreatedByAdminID", CreatedByAmdinID);
 
                         SqlParameter outputIdParam = new SqlParameter("@NewCaseTypeID", SqlDbType.Int)
                         {

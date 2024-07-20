@@ -171,6 +171,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyAim.cs" />
     <Compile Include="clsAdminData.cs" />
     <Compile Include="Judger\clsJudgeCaseTypeData.cs" />
     <Compile Include="clsPractitionerData.cs" />

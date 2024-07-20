@@ -9,7 +9,7 @@ namespace AADLDataAccess.Expert
 {
     public class clsExpertCaseTypeData
     {
-        public static bool GetInfoByCaseTypeID(int? expertCaseTypeID, ref string expertCaseTypeName, ref int? createdByAdminID)
+        public static bool GetInfoByCaseTypeID(int? expertCaseTypeID, ref string expertCaseTypeName)
         {
             bool isFound = false;
 
@@ -33,7 +33,6 @@ namespace AADLDataAccess.Expert
                                 isFound = true;
 
                                 expertCaseTypeName = (string)reader["ExpertCaseTypeName"];
-                                createdByAdminID = (reader["CreatedByAdminID"] != DBNull.Value) ? (int?)reader["CreatedByAdminID"] : null;
                             }
                             else
                             {
@@ -53,7 +52,7 @@ namespace AADLDataAccess.Expert
             return isFound;
         }
 
-        public static bool GetInfoByCaseTypeName(string expertCaseTypeName, ref int? expertCaseTypeID, ref int? createdByAdminID)
+        public static bool GetInfoByCaseTypeName(string expertCaseTypeName, ref int? expertCaseTypeID)
         {
             bool isFound = false;
 
@@ -77,7 +76,6 @@ namespace AADLDataAccess.Expert
                                 isFound = true;
 
                                 expertCaseTypeID = (reader["ExpertCaseTypeID"] != DBNull.Value) ? (int?)reader["ExpertCaseTypeID"] : null;
-                                createdByAdminID = (reader["CreatedByAdminID"] != DBNull.Value) ? (int?)reader["CreatedByAdminID"] : null;
                             }
                             else
                             {
@@ -97,8 +95,8 @@ namespace AADLDataAccess.Expert
             return isFound;
         }
 
-        public static int? Add(string name, int createdByAdminID)
-            => clsCaseTypeData.Add(name, createdByAdminID, clsCaseTypeData.enWhichPractitioner.Expert);
+        public static int? Add(string name)
+            => clsCaseTypeData.Add(name, clsCaseTypeData.enWhichPractitioner.Expert);
         public static bool Update(int ID, string name)
             => clsCaseTypeData.Update(ID, name, clsCaseTypeData.enWhichPractitioner.Expert);
 

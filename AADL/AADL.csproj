@@ -218,6 +218,18 @@
     <Compile Include="Cases Types\frmCasessTypesList.Designer.cs">
       <DependentUpon>frmCasessTypesList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Companies\CompanyAims\frmAddEditCompanyAim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Companies\CompanyAims\frmAddEditCompanyAim.Designer.cs">
+      <DependentUpon>frmAddEditCompanyAim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Companies\CompanyAims\frmCompaniesAimsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Companies\CompanyAims\frmCompaniesAimsList.Designer.cs">
+      <DependentUpon>frmCompaniesAimsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Experts\Controls\ctrExpertCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -468,6 +480,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cases Types\frmCasessTypesList.resx">
       <DependentUpon>frmCasessTypesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Companies\CompanyAims\frmAddEditCompanyAim.resx">
+      <DependentUpon>frmAddEditCompanyAim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Companies\CompanyAims\frmCompaniesAimsList.resx">
+      <DependentUpon>frmCompaniesAimsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Experts\Controls\ctrExpertCard.resx">
       <DependentUpon>ctrExpertCard.cs</DependentUpon>
@@ -1123,6 +1141,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\casesTypes_512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\companies_amis_512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

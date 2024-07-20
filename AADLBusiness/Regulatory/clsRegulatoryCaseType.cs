@@ -21,46 +21,38 @@ namespace AADLBusiness
 
         public string RegulatoryCaseTypeName { get; set; }
 
-        public int CreatedByAdminID {  get; set; }
-
-        public clsAdmin AdminInfo { get; }
-
         public clsRegulatoryCaseType()
         {
             this.RegulatoryCaseTypeID = -1;
             this.RegulatoryCaseTypeName = "";
-            this.CreatedByAdminID = -1;
         }
 
-        private clsRegulatoryCaseType(int RegulatoryCaseTypeID, string RegulatoryCaseTypeName,
-           int CreatedByAdminID)
+        private clsRegulatoryCaseType(int RegulatoryCaseTypeID, string RegulatoryCaseTypeName)
         {
             this.RegulatoryCaseTypeID = RegulatoryCaseTypeID;
             this.RegulatoryCaseTypeName = RegulatoryCaseTypeName;
-            this.CreatedByAdminID = CreatedByAdminID;
         }
 
         public static clsRegulatoryCaseType Find(int RegulatoryCaseTypeID)
         {
             string RegulatoryCaseTypeName = "";
-            int CreatedByAdminID = -1;
 
-            if (clsRegulatoryCaseTypeData.GetRegulatoryCaseTypeInfoByCaseTypeID(RegulatoryCaseTypeID, ref RegulatoryCaseTypeName,ref CreatedByAdminID))
+            if (clsRegulatoryCaseTypeData.GetRegulatoryCaseTypeInfoByCaseTypeID(RegulatoryCaseTypeID, ref RegulatoryCaseTypeName))
 
-                return new clsRegulatoryCaseType(RegulatoryCaseTypeID, RegulatoryCaseTypeName, CreatedByAdminID);
+                return new clsRegulatoryCaseType(RegulatoryCaseTypeID, RegulatoryCaseTypeName);
             else
                 return null;
 
         }
+
         public static clsRegulatoryCaseType Find(string RegulatoryCaseTypeName)
         {
-           
-            int RegulatoryCaseTypeID=-1, CreatedByAdminID = -1;
 
-            if (clsRegulatoryCaseTypeData.GetRegulatoryCaseTypeInfoByCaseTypeName(RegulatoryCaseTypeName, ref RegulatoryCaseTypeID, 
-                ref CreatedByAdminID))
+            int RegulatoryCaseTypeID = -1;
 
-                return new clsRegulatoryCaseType(RegulatoryCaseTypeID, RegulatoryCaseTypeName, CreatedByAdminID);
+            if (clsRegulatoryCaseTypeData.GetRegulatoryCaseTypeInfoByCaseTypeName(RegulatoryCaseTypeName, ref RegulatoryCaseTypeID))
+
+                return new clsRegulatoryCaseType(RegulatoryCaseTypeID, RegulatoryCaseTypeName);
             else
                 return null;
 
@@ -74,8 +66,7 @@ namespace AADLBusiness
         {
             //call DataAccess Layer 
 
-            this.RegulatoryCaseTypeID = clsRegulatoryCaseTypeData.Add(this.RegulatoryCaseTypeName,
-                this.CreatedByAdminID);
+            this.RegulatoryCaseTypeID = clsRegulatoryCaseTypeData.Add(this.RegulatoryCaseTypeName);
 
             return (this.RegulatoryCaseTypeID.HasValue);
 

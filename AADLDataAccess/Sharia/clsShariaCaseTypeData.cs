@@ -13,8 +13,7 @@ namespace AADLDataAccess.Sharia
 {
     public class clsShariaCaseTypeData
     {
-        public static bool GetShariaCaseTypeInfoByCaseTypeID(int InputShariaCaseTypeID, ref string ShariaCaseTypeName
-            , ref int CreatedByAdminID)
+        public static bool GetShariaCaseTypeInfoByCaseTypeID(int InputShariaCaseTypeID, ref string ShariaCaseTypeName)
         {
             bool isFound = false;
 
@@ -39,9 +38,7 @@ namespace AADLDataAccess.Sharia
                                 // The record was found
                                 isFound = true;
 
-                                ShariaCaseTypeName = (string)reader["ShariaCaseTypeName"];
-                                CreatedByAdminID = (int)reader["CreatedByAdminID"];
-
+                                ShariaCaseTypeName = (string)reader["ShariaCaseTypeName"];    
                             }
                             else
                             {
@@ -78,8 +75,7 @@ namespace AADLDataAccess.Sharia
             return isFound;
         }
 
-        public static bool GetShariaCaseTypeInfoByCaseTypeName(string InputShariaCaseTypeName, ref int ShariaCaseTypeID
-          , ref int CreatedByAdminID)
+        public static bool GetShariaCaseTypeInfoByCaseTypeName(string InputShariaCaseTypeName, ref int ShariaCaseTypeID)
         {
             bool isFound = false;
 
@@ -104,9 +100,7 @@ namespace AADLDataAccess.Sharia
                                 // The record was found
                                 isFound = true;
 
-                                ShariaCaseTypeID = (int)reader["RegulatoryCaseTypeID"];
-                                CreatedByAdminID = (int)reader["CreatedByAdminID"];
-
+                                ShariaCaseTypeID = (int)reader["RegulatoryCaseTypeID"];    
                             }
                             else
                             {
@@ -142,8 +136,8 @@ namespace AADLDataAccess.Sharia
 
             return isFound;
         }
-        public static int? Add(string name, int createdByAdminID)
-            => clsCaseTypeData.Add(name, createdByAdminID, clsCaseTypeData.enWhichPractitioner.Sharia);
+        public static int? Add(string name)
+            => clsCaseTypeData.Add(name, clsCaseTypeData.enWhichPractitioner.Sharia);
         public static bool Update(int ID, string name)
             => clsCaseTypeData.Update(ID, name, clsCaseTypeData.enWhichPractitioner.Sharia);
         public static bool Delete(int? ShariaCaseTypeID)

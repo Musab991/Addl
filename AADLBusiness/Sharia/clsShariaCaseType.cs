@@ -21,102 +21,89 @@ namespace AADLBusiness.Sharia
 
         public string ShariaCaseTypeName { get; set; }
 
-        public int CreatedByAdminID { get; set; }
-        
-        public clsAdmin AdminInfo { get; }
-    
         public clsShariaCaseType()
         {
             this.ShariaCaseTypeID = -1;
-    
             this.ShariaCaseTypeName = "";
-    
-            this.CreatedByAdminID = -1;
-            
         }
 
-        private clsShariaCaseType(int ShariaCaseTypeID, string ShariaCaseTypeName,
-            int CreatedByAdminID)
-            {
-                this.ShariaCaseTypeID = ShariaCaseTypeID;
-                this.ShariaCaseTypeName = ShariaCaseTypeName;
-                this.CreatedByAdminID = CreatedByAdminID;
-            }
+        private clsShariaCaseType(int ShariaCaseTypeID, string ShariaCaseTypeName)
+        {
+            this.ShariaCaseTypeID = ShariaCaseTypeID;
+            this.ShariaCaseTypeName = ShariaCaseTypeName;
+        }
 
         public static clsShariaCaseType Find(int ShariaCaseTypeID)
-            {
-                string ShariaCaseTypeName = "";
-                int CreatedByAdminID = -1;
+        {
+            string ShariaCaseTypeName = "";
 
-                if (clsShariaCaseTypeData.GetShariaCaseTypeInfoByCaseTypeID(ShariaCaseTypeID, ref ShariaCaseTypeName, ref CreatedByAdminID))
+            if (clsShariaCaseTypeData.GetShariaCaseTypeInfoByCaseTypeID(ShariaCaseTypeID, ref ShariaCaseTypeName))
 
-                    return new clsShariaCaseType(ShariaCaseTypeID, ShariaCaseTypeName, CreatedByAdminID);
-                else
-                    return null;
+                return new clsShariaCaseType(ShariaCaseTypeID, ShariaCaseTypeName);
+            else
+                return null;
 
-            }
+        }
     
         public static clsShariaCaseType Find(string ShariaCaseTypeName)
-            {
+        {
 
-                int ShariaCaseTypeID = -1, CreatedByAdminID = -1;
+            int ShariaCaseTypeID = -1;
 
-                if (clsShariaCaseTypeData.GetShariaCaseTypeInfoByCaseTypeName(ShariaCaseTypeName, ref ShariaCaseTypeID,
-                    ref CreatedByAdminID))
+            if (clsShariaCaseTypeData.GetShariaCaseTypeInfoByCaseTypeName(ShariaCaseTypeName, ref ShariaCaseTypeID))
 
-                    return new clsShariaCaseType(ShariaCaseTypeID, ShariaCaseTypeName, CreatedByAdminID);
-                else
-                    return null;
+                return new clsShariaCaseType(ShariaCaseTypeID, ShariaCaseTypeName);
+            else
+                return null;
 
-            }
+        }
     
         public static DataTable All()
-            {
-                return clsShariaCaseTypeData.GetAllShariaCaseTypes();
-            }
+        {
+            return clsShariaCaseTypeData.GetAllShariaCaseTypes();
+        }
 
         private bool _AddNewShariaCaseType()
-            {
-                //call DataAccess Layer 
+        {
+            //call DataAccess Layer 
 
-                this.ShariaCaseTypeID = clsShariaCaseTypeData.Add(this.ShariaCaseTypeName,
-                    this.CreatedByAdminID);
+            this.ShariaCaseTypeID = clsShariaCaseTypeData.Add(this.ShariaCaseTypeName);
 
-                return (this.ShariaCaseTypeID.HasValue);
+            return (this.ShariaCaseTypeID.HasValue);
 
-            }
+        }
     
         private bool _UpdateShariaCaseType()
-            {
-                //call DataAccess Layer 
+        {
+            //call DataAccess Layer 
 
-                return clsShariaCaseTypeData.Update((int)this.ShariaCaseTypeID, this.ShariaCaseTypeName);
-            }
+            return clsShariaCaseTypeData.Update((int)this.ShariaCaseTypeID, this.ShariaCaseTypeName);
+        }
     
         public bool Save()
+        {
+            switch (Mode)
             {
-                switch (Mode)
-                {
-                    case enMode.AddNew:
-                        if (_AddNewShariaCaseType())
-                        {
+                case enMode.AddNew:
+                    if (_AddNewShariaCaseType())
+                    {
 
-                            Mode = enMode.Update;
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
 
-                    case enMode.Update:
+                case enMode.Update:
 
-                        return _UpdateShariaCaseType();
+                    return _UpdateShariaCaseType();
 
-                }
-
-                return false;
             }
+
+            return false;
+        }
 
         public static bool Delete(int caseID)
             => clsShariaCaseTypeData.Delete(caseID);
