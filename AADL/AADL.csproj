@@ -372,6 +372,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reasons\frmAddEditReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reasons\frmAddEditReason.Designer.cs">
+      <DependentUpon>frmAddEditReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reasons\frmReasonsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reasons\frmReasonsList.Designer.cs">
+      <DependentUpon>frmReasonsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Regulators\ctrls\ctrlRegulatorCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -564,6 +576,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pracititoners\frmAdvancedSearch.resx">
       <DependentUpon>frmAdvancedSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reasons\frmAddEditReason.resx">
+      <DependentUpon>frmAddEditReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reasons\frmReasonsList.resx">
+      <DependentUpon>frmReasonsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Regulators\ctrls\ctrlRegulatorCard.resx">
       <DependentUpon>ctrlRegulatorCard.cs</DependentUpon>
@@ -1144,6 +1162,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\companies_amis_512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reasons_512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
