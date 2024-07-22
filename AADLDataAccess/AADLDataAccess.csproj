@@ -190,6 +190,7 @@
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsPersonData.cs" />
     <Compile Include="ManagePractitionerCasesTypes.cs" />
+    <Compile Include="ManageReasons.cs" />
     <Compile Include="Regulatory\clsRegulatorData.cs" />
     <Compile Include="Lists\ListReasons\clsListReasonsData.cs" />
     <Compile Include="Regulatory\clsRegulatoryCaseTypeData.cs" />

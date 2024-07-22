@@ -132,6 +132,6 @@ namespace AADLDataAccess
             => clsDataAccessHelper.Exists("SP_DoesCompanyAimExistsByName", "Name", name);
 
         public static DataTable All()
-        => clsDataAccessHelper.All("SP_GetAllCompanyAims");
+            => clsDataAccessHelper.All("SP_GetAllCompanyAims");
     }
 }

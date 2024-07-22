@@ -44,7 +44,7 @@ namespace AADLBusiness
             }
         }
 
-        private clsCaseType(int? id, string name, enWhichPractitioner whichPractitioner)
+        protected clsCaseType(int? id, string name, enWhichPractitioner whichPractitioner)
         {
             ID = id;
             Name = name;
