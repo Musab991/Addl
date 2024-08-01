@@ -79,6 +79,36 @@ namespace AADL_DataAccess.HelperClasses
             return rowAffected > 0;
         }
 
+        public static bool Delete<T1, T2, T3>(string storedProcedureName, string parameterName1, T1 value1, string parameterName2, T2 value2, string parameterName3, T3 value3)
+        {
+            int rowAffected = 0;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue($"@{parameterName1}", (object)value1 ?? DBNull.Value);
+                        command.Parameters.AddWithValue($"@{parameterName2}", (object)value2 ?? DBNull.Value);
+                        command.Parameters.AddWithValue($"@{parameterName3}", (object)value3 ?? DBNull.Value);
+
+                        rowAffected = command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                clsDataAccessHelper.HandleException(ex);
+            }
+
+            return rowAffected > 0;
+        }
+
         public static bool Deactivate<T>(string storedProcedureName, string parameterName, T value)
         {
             int rowAffected = 0;
@@ -106,6 +136,7 @@ namespace AADL_DataAccess.HelperClasses
 
             return rowAffected > 0;
         }
+
         public static bool Activate<T>(string storedProcedureName, string parameterName, T value)
         {
             int rowAffected = 0;
@@ -253,6 +284,45 @@ namespace AADL_DataAccess.HelperClasses
 
                         command.Parameters.AddWithValue($"@{parameterName1}", (object)value1 ?? DBNull.Value);
                         command.Parameters.AddWithValue($"@{parameterName2}", (object)value2 ?? DBNull.Value);
+
+                        var returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
+                        command.Parameters.Add(returnParameter);
+
+                        command.ExecuteNonQuery();
+
+                        isFound = (int)returnParameter.Value == 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                isFound = false;
+                clsDataAccessHelper.HandleException(ex);
+            }
+
+            return isFound;
+        }
+
+        public static bool Exists<T1, T2, T3>(string storedProcedureName, string parameterName1, T1 value1, string parameterName2, T2 value2, string parameterName3, T3 value3)
+        {
+            bool isFound = false;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        command.Parameters.AddWithValue($"@{parameterName1}", (object)value1 ?? DBNull.Value);
+                        command.Parameters.AddWithValue($"@{parameterName2}", (object)value2 ?? DBNull.Value);
+                        command.Parameters.AddWithValue($"@{parameterName3}", (object)value3 ?? DBNull.Value);
 
                         var returnParameter = new SqlParameter("@ReturnVal", SqlDbType.Int)
                         {
