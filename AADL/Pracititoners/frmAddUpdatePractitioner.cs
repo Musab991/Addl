@@ -964,12 +964,12 @@ namespace AADL.Regulators
                 if (_RegulatorMode == enMode.AddNew)
                 {
                     _Regulator.IssueDate = DateTime.Now;
-                    _Regulator.CreatedByUserID = (int)clsGlobal.CurrentUser.UserID;
+                    _Regulator.CreatedByUserID = (int)clsGlobal.CurrentUser.Id;
 
                 }
                 else if (_RegulatorMode == enMode.Update)//update
                 {
-                    _Regulator.LastEditByUserID = clsGlobal.CurrentUser.UserID;
+                    _Regulator.LastEditByUserID = clsGlobal.CurrentUser.Id;
                 }
                
                 _Regulator.PersonID = (int)ctrlPersonCardWithFilter1.PersonID;
@@ -989,12 +989,12 @@ namespace AADL.Regulators
                 if (_ShariaMode == enMode.AddNew)
                 {
                     _Sharia.IssueDate = DateTime.Now;
-                    _Sharia.CreatedByUserID = (int)clsGlobal.CurrentUser.UserID;
+                    _Sharia.CreatedByUserID = (int)clsGlobal.CurrentUser.Id;
                 }
 
                 else if (_ShariaMode == enMode.Update)
                 {
-                    _Sharia.LastEditByUserID = clsGlobal.CurrentUser.UserID;
+                    _Sharia.LastEditByUserID = clsGlobal.CurrentUser.Id;
                 }
 
                 _Sharia.PersonID = (int)ctrlPersonCardWithFilter1.PersonID;
@@ -1016,12 +1016,12 @@ namespace AADL.Regulators
                 if (_JudgerMode == enMode.AddNew)
                 {
                     _Judger.IssueDate = DateTime.Now;
-                    _Judger.CreatedByUserID = (int)clsGlobal.CurrentUser.UserID;
+                    _Judger.CreatedByUserID = (int)clsGlobal.CurrentUser.Id;
                 }
 
                 else if (_JudgerMode == enMode.Update)
                 {
-                    _Judger.LastEditByUserID = clsGlobal.CurrentUser.UserID;
+                    _Judger.LastEditByUserID = clsGlobal.CurrentUser.Id;
                 }
 
                 _Judger.PersonID = (int)ctrlPersonCardWithFilter1.PersonID;
@@ -1042,12 +1042,12 @@ namespace AADL.Regulators
                 if (_ExpertMode == enMode.AddNew)
                 {
                     _Expert.IssueDate = DateTime.Now;
-                    _Expert.CreatedByUserID = (int)clsGlobal.CurrentUser.UserID;
+                    _Expert.CreatedByUserID = (int)clsGlobal.CurrentUser.Id;
                 }
 
                 else if (_ExpertMode == enMode.Update)
                 {
-                    _Expert.LastEditByUserID = clsGlobal.CurrentUser.UserID;
+                    _Expert.LastEditByUserID = clsGlobal.CurrentUser.Id;
                 }
 
                 _Expert.PersonID = (int)ctrlPersonCardWithFilter1.PersonID;

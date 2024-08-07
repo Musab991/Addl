@@ -342,7 +342,7 @@ namespace AADL.People
             _Person.WhatsApp = ctbWhatsApp.Text.Trim();
             _Person.Address = ctbAddress.Text.Trim();
             _Person.DateOfBirth = dtpDateOfBirth.Tag == null ? (DateTime?)null : dtpDateOfBirth.Value;
-            _Person.CreatedByUserID = clsGlobal.CurrentUser.UserID;
+            _Person.CreatedByUserID = clsGlobal.CurrentUser.Id;
             _Person.CountryID = NationalityCountryID;
             _Person.CityID = CityID;
             _Person.IsActive = true;

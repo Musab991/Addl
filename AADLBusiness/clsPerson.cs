@@ -137,7 +137,7 @@ namespace AADLBusiness
             this.IsActive = IsActive;
             this.CountryInfo = clsCountry.Find(CountryID);
             this.CityInfo = clsCity.Find(CityID);
-            this.UserInfo = clsUser.FindByUserID(CreatedByUserID);
+            this.UserInfo = clsUser.Find(CreatedByUserID);
             Mode = enMode.Update;
         }
      

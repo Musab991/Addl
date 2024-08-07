@@ -70,9 +70,9 @@ namespace AADLBusiness.Expert
             this.SelectedPersonInfo = clsPerson.Find(PersonID, clsPerson.enSearchBy.PersonID);
             this.SubscriptionTypeInfo = clsSubscriptionType.Find(SubscriptionTypeID);
             this.SubscriptionWayInfo = clsSubscriptionWay.Find(SubscriptionWayID);
-            this.UserInfo = clsUser.FindByUserID(CreatedByUserID);
+            this.UserInfo = clsUser.Find(CreatedByUserID);
             this.SelectedPersonInfo = clsPerson.Find(PersonID, clsPerson.enSearchBy.PersonID);
-            this.LastEditByUserInfo = clsUser.FindByUserID(LastEditByUserID);
+            if (this.LastEditByUserID != null) this.LastEditByUserInfo = clsUser.Find(this.LastEditByUserID.Value);
 
             Mode = enMode.Update;
         }

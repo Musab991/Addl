@@ -404,7 +404,7 @@ namespace AADL.Regulators
 
                 if (MessageBox.Show($"هل انت متاكد انك تريد تريد تفعيل الحساب رقم {RegulatorID} ؟", "تاكيد التفعيل", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    if (clsRegulator.Activate(RegulatorID,(int)clsGlobal.CurrentUser.UserID))
+                    if (clsRegulator.Activate(RegulatorID,(int)clsGlobal.CurrentUser.Id))
                     {
                         MessageBox.Show($"تم تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -426,7 +426,7 @@ namespace AADL.Regulators
             
                 if (MessageBox.Show($"هل انت متاكد انك تريد تريد الغاء تفعيل الحساب رقم {RegulatorID} ؟", "تاكيد الإلغاء", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    if (clsRegulator.Deactivate(RegulatorID,(int)clsGlobal.CurrentUser.UserID))
+                    if (clsRegulator.Deactivate(RegulatorID,(int)clsGlobal.CurrentUser.Id))
                     {
                         MessageBox.Show($"تم الإلغاء تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -171,7 +171,6 @@ P:\GitHub\Addl\AADL\obj\Debug\AADL.Sharia.frmShariaCard.resources
 P:\GitHub\Addl\AADL\obj\Debug\AADL.Sharia.frmShariaDraft.resources
 P:\GitHub\Addl\AADL\obj\Debug\AADL.Sharia.frmShariaList.resources
 P:\GitHub\Addl\AADL\obj\Debug\AADL.Users.ctrlUserCard.resources
-P:\GitHub\Addl\AADL\obj\Debug\AADL.Users.frmAddUpdateUser.resources
 P:\GitHub\Addl\AADL\obj\Debug\AADL.Users.frmChangeUserPassword.resources
 P:\GitHub\Addl\AADL\obj\Debug\AADL.Users.frmListUsers.resources
 P:\GitHub\Addl\AADL\obj\Debug\AADL.Users.frmUserInfo.resources
@@ -190,5 +189,9 @@ P:\GitHub\Addl\AADL\obj\Debug\AADL.csproj.Up2Date
 P:\GitHub\Addl\AADL\obj\Debug\AADL.exe
 P:\GitHub\Addl\AADL\obj\Debug\AADL.pdb
 P:\GitHub\Addl\AADL\obj\Debug\AADL.Reasons.frmReasonsList.resources
+P:\GitHub\Addl\AADL\obj\Debug\AADL.Users.frmAddNewUser.resources
+P:\GitHub\Addl\AADL\obj\Debug\AADL.Users.Controls.ctrPermissions.resources
+P:\GitHub\Addl\AADL\obj\Debug\AADL.Users.frmPermissions.resources
 P:\GitHub\Addl\AADL\obj\Debug\AADL.csproj.Fody.CopyLocal.cache
 P:\GitHub\Addl\AADL\obj\Debug\AADL.csproj.Fody.RuntimeCopyLocal.cache
+P:\GitHub\Addl\AADL\obj\Debug\AADL.Main.frmMain.resources

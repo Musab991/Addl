@@ -864,7 +864,7 @@ namespace AADL.Lists
         {
             if (_Mode == enMode.Update)
             {
-                _BlackList.LastEditByUserID = clsGlobal.CurrentUser.UserID;
+                _BlackList.LastEditByUserID = clsGlobal.CurrentUser.Id;
                 _BlackList.LastEditDate = DateTime.Now;
             }
 
@@ -875,7 +875,7 @@ namespace AADL.Lists
 
             _BlackList.PractitionerID = _PractitionerID;
             _BlackList.Notes = tbListNote.Text;
-            _BlackList.CreatedByUserID = (int)clsGlobal.CurrentUser.UserID;
+            _BlackList.CreatedByUserID = (int)clsGlobal.CurrentUser.Id;
             _BlackList.BlackListPractitionerReasonsIDNamesDictionary = _GetCheckedReasons();
 
         }
@@ -907,7 +907,7 @@ namespace AADL.Lists
 
             if (_Mode == enMode.Update)
             {
-                _WhiteList.LastEditByUserID = clsGlobal.CurrentUser.UserID;
+                _WhiteList.LastEditByUserID = clsGlobal.CurrentUser.Id;
                 _WhiteList.LastEditDate = DateTime.Now;
             }
 
@@ -918,7 +918,7 @@ namespace AADL.Lists
 
             _WhiteList.PractitionerID = _PractitionerID;
             _WhiteList.Notes = tbListNote.Text;
-            _WhiteList.CreatedByUserID = (int)clsGlobal.CurrentUser.UserID;
+            _WhiteList.CreatedByUserID = (int)clsGlobal.CurrentUser.Id;
             _WhiteList.WhiteListPractitionerReasonsIDNamesDictionary = _GetCheckedReasons();
             _WhiteList.PractitionerType = _ReturnPractitionerTypeBasedOnCreationMode();
         } 
@@ -946,7 +946,7 @@ namespace AADL.Lists
         {
             if (_Mode == enMode.Update)
             {
-                _ClosedList.LastEditByUserID = clsGlobal.CurrentUser.UserID;
+                _ClosedList.LastEditByUserID = clsGlobal.CurrentUser.Id;
                 _ClosedList.LastEditDate = DateTime.Now;
             }
 
@@ -957,7 +957,7 @@ namespace AADL.Lists
 
             _ClosedList.PractitionerID = _PractitionerID;
             _ClosedList.Notes = tbListNote.Text;
-            _ClosedList.CreatedByUserID = (int)clsGlobal.CurrentUser.UserID;
+            _ClosedList.CreatedByUserID = (int)clsGlobal.CurrentUser.Id;
             _ClosedList.ClosedListPractitionerReasonsIDNamesDictionary = _GetCheckedReasons();
             //This is the only property would differ between different lists
             _ClosedList.PractitionerType = _ReturnPractitionerTypeBasedOnCreationMode();

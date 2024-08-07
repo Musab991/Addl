@@ -43,9 +43,9 @@ namespace AADLBusiness.Judger
                 this.IssueDate = IssueDate;
                 this.LastEditDate = LastEditDate;
                 this.LastEditByUserID = LastEditByUserID;
-                if (this.LastEditByUserID != null) this.LastEditByUserInfo = clsUser.FindByUserID(this.LastEditByUserID);
+                if (this.LastEditByUserID != null) this.LastEditByUserInfo = clsUser.Find(this.LastEditByUserID.Value);
                 this.CreatedByUserID = CreatedByUserID;
-                this.UserInfo = clsUser.FindByUserID(this.CreatedByUserID);
+                this.UserInfo = clsUser.Find(this.CreatedByUserID);
                 this.IsActive = IsActive;
                 this._JudgeCasesPracticeIDNameDictionary = JudgerCasesPracticeIDNameDictionary;
 

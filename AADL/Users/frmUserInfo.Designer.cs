@@ -34,10 +34,11 @@
             // 
             // ctrlUserCard1
             // 
-            this.ctrlUserCard1.Location = new System.Drawing.Point(12, 12);
+            this.ctrlUserCard1.Location = new System.Drawing.Point(16, 15);
+            this.ctrlUserCard1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ctrlUserCard1.Name = "ctrlUserCard1";
             this.ctrlUserCard1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrlUserCard1.Size = new System.Drawing.Size(848, 111);
+            this.ctrlUserCard1.Size = new System.Drawing.Size(1131, 137);
             this.ctrlUserCard1.TabIndex = 0;
             // 
             // btnClose
@@ -46,10 +47,10 @@
             this.btnClose.Image = global::AADL.Properties.Resources.Close_32;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClose.Location = new System.Drawing.Point(363, 119);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClose.Location = new System.Drawing.Point(484, 146);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(126, 37);
+            this.btnClose.Size = new System.Drawing.Size(168, 46);
             this.btnClose.TabIndex = 19;
             this.btnClose.Text = "اغلاق";
             this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -58,12 +59,14 @@
             // 
             // frmUserInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(870, 167);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1160, 206);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlUserCard1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmUserInfo";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "لوحة المستخدم";

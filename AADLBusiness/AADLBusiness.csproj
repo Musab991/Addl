@@ -189,11 +189,12 @@
     <Compile Include="Lists\WhiteList\clsWhiteList.cs" />
     <Compile Include="ManagePractitionerCasesTypes.cs" />
     <Compile Include="ManageReasons.cs" />
+    <Compile Include="Users\enPermission.cs" />
     <Compile Include="Regulatory\clsRegulator.cs" />
     <Compile Include="Lists\Black\clsBlackListReason.cs" />
     <Compile Include="Regulatory\clsRegulatoryCaseType.cs" />
     <Compile Include="clsSubscriptionType.cs" />
-    <Compile Include="clsUser.cs" />
+    <Compile Include="Users\clsUser.cs" />
     <Compile Include="HelperClasses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
