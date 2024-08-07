@@ -1,246 +1,316 @@
 ﻿using AADLBusiness;
+using AADLBusiness.Permissions;
+using DVLD.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AADL.Users
 {
     public partial class frmListUsers : Form
     {
+        private void _OnUserAdded() => _LoadRefreshUsers();
 
-        private static DataTable _dtAllUsers;
+        private void _Subscribe(frmAddNewUser frm) => frm.UserAdded += _OnUserAdded;
 
-        private bool _IsDataLoading = true;
+
+        private static DataTable _dtUsers;
+
         public frmListUsers()
         {
             InitializeComponent();
         }
-        private async void frmListUsers_Load(object sender, EventArgs e)
+
+        private void _FillDataGridView(DataTable dtUsers)
         {
-            _IsDataLoading = true;
-            _dtAllUsers = await Task.Run(() => clsUser.GetAllUsers());
-          
-            if (_dtAllUsers.Rows.Count > 0)
+            dgvUsers.DataSource = null;
+            if (dtUsers != null && dtUsers.Rows.Count > 0)
             {
+                dgvUsers.DataSource = dtUsers;
 
-                dgvUsers.DataSource = _dtAllUsers;
+                //Change the columns name
+                dgvUsers.Columns["UserId"].HeaderText = "الرقم التعريفي";
+                dgvUsers.Columns["UserName"].HeaderText = "الاسم";
+                dgvUsers.Columns["IssueDate"].HeaderText = "تاريخ الانشاء";
+                dgvUsers.Columns["CreatedByUser"].HeaderText = "تم الانشاء من قبل";
+                dgvUsers.Columns["IsActive"].HeaderText = "هل فعال ؟";
 
-                dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                cbFilterBy.SelectedIndex = 0;
-                lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
-                
+                lblTotalRecordsCount.Text = dtUsers.Rows.Count.ToString();
             }
-            _IsDataLoading = false;
-       
-
         }
 
-        private void _Reset()
+        private void _LoadRefreshUsers()
         {
-            frmListUsers_Load(null, null);
-
-        }
-        private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (cbFilterBy.SelectedIndex == 3)
-            {
-                txtFilterValue.Visible = false;
-                cbIsActive.Visible = true;
-                cbIsActive.Focus();
-                cbIsActive.SelectedIndex = 0;
-            }
-          
-            else
-            {
-                txtFilterValue.Visible = (cbFilterBy.SelectedIndex != 0)||(cbFilterBy.SelectedIndex == 3);
-                cbIsActive.Visible = false;
-                txtFilterValue.Text = "";
-                txtFilterValue.Focus();
-            }
-
-
+            _dtUsers = clsUser.All();
+            _FillDataGridView(_dtUsers);
         }
 
-        private void txtFilterValue_TextChanged(object sender, EventArgs e)
+        private void _Settings()
         {
-            string FilterColumn = "";
-            //Map Selected Filter to real Column name 
-            switch (cbFilterBy.SelectedIndex)
+            cbFilterBy.SelectedItem = "لا شيء";
+        }
+
+        private void _Filter()
+        {
+            string filterColumn = string.Empty;
+            string filterValue = txtFilterValue.Text.Trim();
+
+            // Map Selected Filter to real Column name 
+            switch (cbFilterBy.Text)
             {
-
-                case 0:
-                    FilterColumn = "لاشيء";
+                case "لا شيء":
+                    filterColumn = "None";
                     break;
-             
-                case 1:
-                    FilterColumn = "رقم المستخدم";
+                case "الرقم التعريفي":
+                    filterColumn = "UserId";
                     break;
-
-                case 2:
-                    FilterColumn = "اسم المستخدم";
+                case "الاسم":
+                    filterColumn = "UserName";
                     break;
-
-
-                case 3:
-                    FilterColumn = "هل نشط";
+                case "من قام بالانشاء":
+                    filterColumn = "CreatedByUser";
                     break;
-
+                case "هل فعال ؟":
+                    filterColumn = "IsActive";
+                    break;
                 default:
-                    FilterColumn = "None";
+                    filterColumn = "None";
                     break;
-
             }
 
-            //Reset the filters in case nothing selected or filter value conains nothing.
-            if (txtFilterValue.Text.Trim() == "" || FilterColumn == "None")
+            //Reset the filters in case nothing selected or filter value contains nothing.
+            if (filterValue == string.Empty || filterColumn == "None")
             {
-                _dtAllUsers.DefaultView.RowFilter = "";
-                lblRecordsCount.Text = dgvUsers.Rows.Count.ToString();
-                return;
+                _dtUsers.DefaultView.RowFilter = string.Empty;
+            }
+            else
+            {
+
+                if (filterColumn == "UserId")
+                    //in this case we deal with integer not string.
+                    _dtUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, filterValue);
+                else
+                    _dtUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterColumn, filterValue);
             }
 
+            // Updates the total records count label
+            lblTotalRecordsCount.Text = dgvUsers.Rows.Count.ToString();
+        }
 
-            if (FilterColumn != "UserName")
-                //in this case we deal with numbers not string.
-                _dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, txtFilterValue.Text.Trim());
-            else
-                _dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", FilterColumn, txtFilterValue.Text.Trim());
+        private void _ShowUserInfoForm()
+        {
+            int judgerID = (int)dgvUsers.CurrentRow.Cells["UserId"].Value;
 
-            lblRecordsCount.Text = _dtAllUsers.Rows.Count.ToString();
+            frmUserInfo frm = new frmUserInfo(judgerID);
+            frm.ShowDialog();
+        }
 
+        private void frmListUsers_Load(object sender, EventArgs e)
+        {
+            // Cusomize the appearance of the DataGridView
+            clsUtil.CustomizeDataGridView(dgvUsers);
+            _LoadRefreshUsers();
+            _Settings();
+        }
+
+        private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbFilterBy.Text == "الرقم التعريفي")
+                clsUtil.IsNumber(e);
+        }
+
+        private void dgvUsers_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // Check if there are any rows and columns in the DataGridView
+                if (dgvUsers.Rows.Count == 0 || dgvUsers.Columns.Count == 0)
+                {
+                    // Suppress the ContextMenuStrip
+                    return;
+                }
+
+                // Check if the clicked cell is valid
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    // Show the ContextMenuStrip
+                    dgvUsers.CurrentCell = dgvUsers[e.ColumnIndex, e.RowIndex];
+                    cmsUsers.Show(Cursor.Position);
+                }
+            }
         }
 
         private void cbIsActive_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string filterColumn = "IsActive";
+            string filterValue = string.Empty;
 
+            // Map Selected Filter to real Column name 
+            switch (cbIsActive.Text)
+            {
+                case "الكل":
+                    filterValue = string.Empty;
+                    break;
+                case "نعم":
+                    filterValue = "1";
+                    break;
+                case "لا":
+                    filterValue = "0";
+                    break;
+                default:
+                    filterValue = string.Empty;
+                    break;
+            }
 
-            string FilterColumn = "هل نشط";
-            string FilterValue = cbIsActive.Text;
+            if (filterValue == string.Empty)
+                _dtUsers.DefaultView.RowFilter = filterValue;
+            else
+                _dtUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, filterValue);
 
-            //switch (FilterValue)
-            //{
-            //    case "الكل":
-            //        break;
-            //    case "نعم":
-            //        FilterValue = 1;
-            //        break;
-            //    case "لا":
-            //        FilterValue = "0";
-            //        break;
-            //}
+            // Updates the total records count label
+            lblTotalRecordsCount.Text = dgvUsers.Rows.Count.ToString();
+        }
 
+        private void txtFilterValue_TextChanged(object sender, EventArgs e)
+        {
+            _Filter();
+        }
 
-            if (FilterValue == "الكل")
-                _dtAllUsers.DefaultView.RowFilter = "";
+        private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtFilterValue.Visible = (cbFilterBy.Text != "لا شيء" && cbFilterBy.Text != "هل فعال ؟");
+
+            cbIsActive.Visible = cbFilterBy.Text == "هل فعال ؟";
+
+            if (cbIsActive.Visible)
+                cbIsActive.SelectedItem = "الكل";
+
+            else if (txtFilterValue.Visible)
+            {
+                txtFilterValue.Clear();
+                txtFilterValue.Focus();
+            }
+
+            if (_dtUsers != null)
+            {
+                _dtUsers.DefaultView.RowFilter = string.Empty;
+                lblTotalRecordsCount.Text = dgvUsers.Rows.Count.ToString();
+            }
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            if (!clsUtil.HasAccess(enPermission.AddUser))
+                return;
+
+            frmAddNewUser frm = new frmAddNewUser();
+            _Subscribe(frm);
+            frm.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!clsUtil.HasAccess(enPermission.UpdateUser))
+                return;
+
+            int userId = (int)dgvUsers.CurrentRow.Cells["UserId"].Value;
+            frmChangeUserPassword frm = new frmChangeUserPassword(userId);
+            frm.ShowDialog();
+        }
+
+        private void deleteUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!clsUtil.HasAccess(enPermission.DeleteUser))
+                return;
+
+            int userId = (int)dgvUsers.CurrentRow.Cells["UserId"].Value;
+            if (MessageBox.Show($"هل انت متاكد انك تريد حذف حساب المستخدم بالرقم ({userId}) ؟", "تاكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                if (clsUser.Delete(userId))
+                {
+                    MessageBox.Show($"تم حذف الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _LoadRefreshUsers();
+                }
+                else
+                    MessageBox.Show($"لم يتم حذف الحساب بنجاح بسبب عطل فني في النظام. الرجاء إبلاغ فريق الصيانة", "فشلت العملية", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void activateUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!clsUtil.HasAccess(enPermission.UpdateUser))
+                return;
+
+            int userID = (int)dgvUsers.CurrentRow.Cells["UserId"].Value;
+
+            if (MessageBox.Show($"هل انت متاكد انك تريد تريد تفعيل الحساب رقم {userID} ؟", "تاكيد التفعيل", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                if (clsUser.Activate(userID))
+                {
+                    MessageBox.Show($"تم تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    _LoadRefreshUsers();
+                }
+                else
+                    MessageBox.Show($"لم يتم تفعيل الحساب بسبب عطل فني في النظام. الرجاء إبلاغ فريق الصيانة", "فشلت العملية", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void deactivateUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!clsUtil.HasAccess(enPermission.UpdateUser))
+                return;
+
+            int userID = (int)dgvUsers.CurrentRow.Cells["UserId"].Value;
+
+            if (MessageBox.Show($"هل انت متاكد انك تريد تريد إلغاء تفعيل الحساب رقم {userID} ؟", "تاكيد إلغاء التفعيل", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                if (clsUser.Deactivate(userID))
+                {
+                    MessageBox.Show($"تم إلغاء تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    _LoadRefreshUsers();
+                }
+                else
+                    MessageBox.Show($"لم يتم إلغاء تفعيل الحساب بسبب عطل فني في النظام. الرجاء إبلاغ فريق الصيانة", "فشلت العملية", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmsUsers_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            bool isActive = (bool)dgvUsers.CurrentRow.Cells["IsActive"].Value;
+
+            if (isActive)
+            {
+                activateUserToolStripMenuItem.Enabled = false;
+                deactivateUserToolStripMenuItem.Enabled = true;
+            }
             else
             {
-                //in this case we deal with numbers not string.
-                //_dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] = {1}", FilterColumn, FilterValue);
-                
-                _dtAllUsers.DefaultView.RowFilter = string.Format("[{0}] = '{1}'", FilterColumn, FilterValue);
-            }
-
-            lblRecordsCount.Text = _dtAllUsers.Rows.Count.ToString();
-
-
-        }
-
-        private void btnAddUser_Click(object sender, EventArgs e)
-        {
-            frmAddUpdateUser Frm1 = new frmAddUpdateUser();
-            frmAddUpdateUser.OnUsersUpdated += _Reset;
-            Frm1.ShowDialog();
-        }
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            frmAddUpdateUser Frm1 = new frmAddUpdateUser((int)dgvUsers.CurrentRow.Cells[0].Value);
-            frmAddUpdateUser.OnUsersUpdated += _Reset;
-            Frm1.ShowDialog();
-
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            frmAddUpdateUser Frm1 = new frmAddUpdateUser();
-            frmAddUpdateUser.OnUsersUpdated += _Reset;
-            Frm1.ShowDialog();
-        }
-
-        private void dgvUsers_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            frmUserInfo Frm1 = new frmUserInfo((int)dgvUsers.CurrentRow.Cells[0].Value);
-            Frm1.ShowDialog();
-
-        }
-
-        private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmUserInfo Frm1 = new frmUserInfo((int)dgvUsers.CurrentRow.Cells[0].Value);
-            Frm1.ShowDialog();
-
-        }
-
-        private void ChangePasswordtoolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            int UserID = (int)dgvUsers.CurrentRow.Cells[0].Value;
-            frmChangeUserPassword Frm1 = new frmChangeUserPassword(UserID);
-            Frm1.ShowDialog();
-
-        }
-
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("هل أنت متأكد من رغبتك في حذف المستخدم؟\n"+ dgvUsers.CurrentRow.Cells[1].Value,
-                "تاكيد الحذف", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-
-            {
-                try
-                {
-
-                    int UserID = (int)dgvUsers.CurrentRow.Cells[0].Value;
-                    if (clsUser.DeleteUser(UserID))
-                    {
-                        MessageBox.Show("تم حذف المستخدم بنجاح", "حُذِفَ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        frmListUsers_Load(null, null);
-                    }
-
-                    else
-                        MessageBox.Show("لم يتم حذف المستخدم بسبب البيانات المتصلة به.", "فشل", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("لم يتم حذف المستخدم بسبب خطاء فني داخل النظام!!\n" + ex.Message, "فشل", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                activateUserToolStripMenuItem.Enabled = true;
+                deactivateUserToolStripMenuItem.Enabled = false;
             }
         }
 
-        private void dgvUsers_MouseMove(object sender, MouseEventArgs e)
+        private void showInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_IsDataLoading)
-            {
-                Cursor.Current = Cursors.WaitCursor;
-            }
-            else
-            {
-                Cursor.Current = Cursors.Default;
-
-            }
+            _ShowUserInfoForm();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void dgvUsers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Close();
+            _ShowUserInfoForm();
         }
 
+        private void changePermissionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!clsUtil.HasAccess(enPermission.UpdateUser))
+                return;
+
+            int userID = (int)dgvUsers.CurrentRow.Cells["UserId"].Value;
+            frmPermissions frm = new frmPermissions(userID);
+            frm.ShowDialog();
+        }
     }
-
 }

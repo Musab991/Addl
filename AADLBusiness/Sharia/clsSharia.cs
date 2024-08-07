@@ -78,19 +78,15 @@ namespace AADLBusiness.Sharia
             this.IssueDate = IssueDate;
             this.LastEditDate = LastEditDate;
             this.LastEditByUserID= LastEditByUserID;
+            if (this.LastEditByUserID != null) this.LastEditByUserInfo = clsUser.Find(this.LastEditByUserID.Value);
             this.CreatedByUserID = CreatedByUserID;
             this.IsActive = IsActive;
             this.SelectedPersonInfo = clsPerson.Find(PersonID, clsPerson.enSearchBy.PersonID);
 
-            UserInfo = clsUser.FindByUserID(CreatedByUserID);
+            UserInfo = clsUser.Find(CreatedByUserID);
             //cases regulator practice.
             _ShariaCasesPracticeIDNameDictionary = ShariaCasesPracticeIDNameDictionary;
 
-                if (LastEditByUserID != null)
-                {
-                    LastEditByUserInfo = clsUser.FindByUserID(LastEditByUserID);
-
-                }
             Mode = enMode.Update;
             }
                 catch(Exception ex)

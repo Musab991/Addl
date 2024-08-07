@@ -32,7 +32,7 @@ namespace AADL.Users
         {
             _ResetDefaultValues();
 
-            _User = clsUser.FindByUserID(_UserID);
+            _User = clsUser.Find(_UserID);
 
             if (_User == null)
             {
@@ -114,9 +114,7 @@ namespace AADL.Users
                 return;
             }
 
-            _User.Password = txtNewPassword.Text;
-
-            if (_User.Save())
+            if (_User.ChangePassword(txtNewPassword.Text.Trim()))
             {
                 MessageBox.Show("تم تغيير كلمة المرور بنجاح.",
                    "حفظ.", MessageBoxButtons.OK, MessageBoxIcon.Information);

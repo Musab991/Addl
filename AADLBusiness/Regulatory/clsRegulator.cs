@@ -75,9 +75,9 @@ namespace AADLBusiness
             this.CreatedByUserID = CreatedByUserID;
             this.IsActive = IsActive;
             _RegulatorCasesPracticeIDNameDictionary = RegulatorCasesPracticeIDNameDictionary;
-            UserInfo = clsUser.FindByUserID(CreatedByUserID);
+            UserInfo = clsUser.Find(CreatedByUserID);
             SelectedPersonInfo = clsPerson.Find(PersonID, clsPerson.enSearchBy.PersonID);
-            LastEditByUserInfo=clsUser.FindByUserID(LastEditByUserID);
+            if (this.LastEditByUserID != null) this.LastEditByUserInfo = clsUser.Find(this.LastEditByUserID.Value);
             Mode = enMode.Update;
 
             //or make object carrying properties only

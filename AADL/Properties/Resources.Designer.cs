@@ -1123,6 +1123,16 @@ namespace AADL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap permissions_32 {
+            get {
+                object obj = ResourceManager.GetObject("permissions_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Person_32 {
             get {
                 object obj = ResourceManager.GetObject("Person 32", resourceCulture);
@@ -1266,6 +1276,16 @@ namespace AADL.Properties {
         internal static System.Drawing.Bitmap requlators_512 {
             get {
                 object obj = ResourceManager.GetObject("requlators_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reset_password_32 {
+            get {
+                object obj = ResourceManager.GetObject("reset-password_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

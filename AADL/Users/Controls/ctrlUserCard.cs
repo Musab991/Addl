@@ -31,7 +31,7 @@ namespace AADL.Users
 
         public void LoadUserInfo(int UserID)
         {
-            _User = clsUser.FindByUserID(UserID);
+            _User = clsUser.Find(UserID);
             if (_User == null)
             {
                 _ResetPersonInfo();
@@ -45,7 +45,7 @@ namespace AADL.Users
         private void _FillUserInfo()
         {
 
-            lblUserID.Text = _User.UserID.ToString();
+            lblUserID.Text = _User.Id.ToString();
             lblUserName.Text = _User.UserName.ToString();
 
             if (_User.IsActive)

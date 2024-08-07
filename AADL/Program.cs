@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using AADL.Companies.CompanyAims;
+using AADL.Users;
 namespace AADL
 {
     internal static class Program
@@ -13,7 +14,7 @@ namespace AADL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCompaniesAimsList());
+            Application.Run(new frmListUsers());
         }
     }
 }

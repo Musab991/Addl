@@ -18,7 +18,7 @@ namespace AADL
 
         // public static clsUser CurrentUser;
         public static clsAdmin CurrentAdmin = clsAdmin.FindByAdminID(2);
-        public static clsUser CurrentUser=clsUser.FindByUserID(8);
+        public static clsUser CurrentUser=clsUser.Find(8);
 
         // Define a class to hold custom event info
    

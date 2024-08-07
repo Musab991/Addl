@@ -5,6 +5,8 @@ using System.Configuration;
 using System.Drawing;
 using AADLBusiness;
 using System.Data;
+using AADL;
+using AADLBusiness.Permissions;
 
 namespace DVLD.Classes
 {
@@ -93,6 +95,7 @@ namespace DVLD.Classes
         public static Color RegulatorsMainColor => Color.FromArgb(192, 64, 0);
         public static Color ShariasMainColor => Color.Crimson;
 
+        public static object MessageBoxIcons { get; private set; }
 
         public static void CustomizeDataGridView(DataGridView dgv)
         {
@@ -211,5 +214,21 @@ namespace DVLD.Classes
         }
 
         ///
+
+        private static void _showAccessDeniedMessage()
+        {
+            MessageBox.Show("عفوا ليس لديك صلاحية لهذة العملية. الرجاء التواصل مع مديرك", "تم رفض الوصول", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static bool HasAccess(enPermission permission)
+        {
+            if (!clsGlobal.CurrentUser.HasPermission(permission))
+            {
+                _showAccessDeniedMessage();
+                return false;
+            }
+
+            return true;
+        }
     }
 }

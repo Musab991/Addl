@@ -56,10 +56,10 @@ namespace AADL.Lists
                         tbListNote.Text = _BlackList.Notes?.ToString() ?? string.Empty;
                         lbIssueDate.Text = _BlackList.AddedToListDate.ToShortDateString();
 
-                        lbCreatedByUser.Text = clsUser.FindByUserID(_BlackList.CreatedByUserID).UserName.ToString();
+                        lbCreatedByUser.Text = clsUser.Find(_BlackList.CreatedByUserID).UserName.ToString();
 
                         lbLastEditBy.Text=_BlackList.LastEditByUserID==null?"[???]":
-                           clsUser.FindByUserID( _BlackList.LastEditByUserID).UserName.ToString();
+                           clsUser.Find( _BlackList.LastEditByUserID.Value).UserName.ToString();
 
                         lbLastEditDate.Text = _BlackList.LastEditDate == null ? "[???]" :
                              _BlackList.LastEditDate.Value.ToShortDateString();
@@ -84,10 +84,10 @@ namespace AADL.Lists
                         tbListNote.Text = _WhiteList.Notes?.ToString()??string.Empty;
                         lbIssueDate.Text = _WhiteList.AddedToListDate.ToShortDateString();
 
-                        lbCreatedByUser.Text = clsUser.FindByUserID(_WhiteList.CreatedByUserID).UserName.ToString();
+                        lbCreatedByUser.Text = clsUser.Find(_WhiteList.CreatedByUserID).UserName.ToString();
 
                         lbLastEditBy.Text = _WhiteList.LastEditByUserID == null ? "[???]" :
-                           clsUser.FindByUserID(_WhiteList.LastEditByUserID).UserName.ToString();
+                           clsUser.Find(_WhiteList.LastEditByUserID.Value).UserName.ToString();
 
                         lbLastEditDate.Text = _WhiteList.LastEditDate == null ? "[???]" :
                              _WhiteList.LastEditDate.Value.ToShortDateString();
@@ -112,10 +112,10 @@ namespace AADL.Lists
                         tbListNote.Text = _ClosedList.Notes?.ToString() ?? string.Empty;
                         lbIssueDate.Text = _ClosedList.AddedToListDate.ToShortDateString();
 
-                        lbCreatedByUser.Text = clsUser.FindByUserID(_ClosedList.CreatedByUserID).UserName.ToString();
+                        lbCreatedByUser.Text = clsUser.Find(_ClosedList.CreatedByUserID).UserName.ToString();
 
                         lbLastEditBy.Text = _ClosedList.LastEditByUserID == null ? "[???]" :
-                           clsUser.FindByUserID(_ClosedList.LastEditByUserID).UserName.ToString();
+                           clsUser.Find(_ClosedList.LastEditByUserID.Value).UserName.ToString();
 
                         lbLastEditDate.Text = _ClosedList.LastEditDate == null ? "[???]" :
                              _ClosedList.LastEditDate.Value.ToShortDateString();

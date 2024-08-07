@@ -279,7 +279,7 @@ namespace AADL.Judgers
 
             if (MessageBox.Show($"هل انت متاكد انك تريد تريد الغاء تفعيل الحساب رقم {judgerID} ؟", "تاكيد الإلغاء", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (clsJudger.Deactivate(judgerID, (int)clsGlobal.CurrentUser.UserID))
+                if (clsJudger.Deactivate(judgerID, (int)clsGlobal.CurrentUser.Id))
                 {
                     MessageBox.Show($"تم الإلغاء تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -367,7 +367,7 @@ namespace AADL.Judgers
 
             if (MessageBox.Show($"هل انت متاكد انك تريد تريد تفعيل الحساب رقم {judgerID} ؟", "تاكيد التفعيل", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (clsJudger.Activate(judgerID, (int)clsGlobal.CurrentUser.UserID))
+                if (clsJudger.Activate(judgerID, (int)clsGlobal.CurrentUser.Id))
                 {
                     MessageBox.Show($"تم تفعيل الحساب بنجاح", "نجحت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
